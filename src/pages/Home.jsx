@@ -1,7 +1,7 @@
 import React from 'react'
 import 'boxicons/css/boxicons.min.css';
 import avatar from '../assets/img/avatar.png'
-import '../assets/styles/home.css'
+
 import '../App.css'
 
 const Home = () => {

@@ -10,7 +10,7 @@
 
 @layer components {
     .bg-rgba {
-        background-color: rgba(203, 224, 222, 0.8);
+        background-color: #d9e3e1;
     }
     .container {
         @apply max-w-full w-[1440px] px-5 mx-auto
