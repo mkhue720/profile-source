@@ -9,9 +9,7 @@
 }
 
 @layer components {
-    .bg-rgba {
-        background-color: #d9e3e1;
-    }
+    
     .container {
         @apply max-w-full w-[1440px] px-5 mx-auto
     }
@@ -25,7 +23,7 @@
         @apply text-[18px] leading-[30px] font-[400] text-textColor mt-[18px]
     }
     .header {
-        @apply bg-rgba bg-no-repeat bg-center bg-cover w-full h-[100px] leading-[100px]
+        @apply bg-no-repeat bg-center bg-cover w-full h-[100px] leading-[100px]
     }
     .hero__section {
         @apply bg-[url('./assets/images/hero-bg.png')] bg-no-repeat bg-center bg-cover
