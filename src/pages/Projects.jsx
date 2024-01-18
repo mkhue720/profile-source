@@ -42,7 +42,9 @@ const Projects = () => {
               <i className='bx bxl-github' ></i>
             </span>
             <div className="location">
-              <h3>{repo.name}</h3>
+              <a href={repo.html_url}>
+                <h3>{repo.name}</h3>
+              </a>
             </div>
           </div>
           <h3>{repo.description}</h3>
@@ -55,7 +57,6 @@ const Projects = () => {
             <i className='bx bx-git-repo-forked'></i>
             Forks: {repo.forks_count}</p>
           <p>Language: {repo.language}</p>
-          <a href={repo.html_url}>View on GitHub</a>
         </div>
       ))}
     </div>

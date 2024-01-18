@@ -34,12 +34,12 @@
 
 .light {
   --bg: #d5d4da;
-  --text: #000000;
+  --text: #000;
 }
 
 .dark {
-  --bg: #070119;
-  --text: #ffffff;
+  --bg: #000;
+  --text: #fff;
 }
 body {
   font-family: "Poppins", sans-serif;
@@ -52,9 +52,9 @@ body {
 .theme-toggle button {
   @apply text-2xl p-2.5;
 }
-/* .sticky__header {
-  @apply sticky z-[999] top-0;
-} */
+.theme-toggle button:focus {
+  @apply outline-none;
+}
 @media only screen and (max-width: 768px) {
   .navigation {
     @apply w-full h-full fixed z-[100] hidden left-0 top-0;
@@ -90,12 +90,12 @@ body {
 .profile__name {
   @apply text-[length:var(--h2-font-size)];
 }
-.introduce {
+/* .introduce {
   @apply flex flex-col items-center gap-6 w-4/5 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-1px_rgba(0,0,0,0.06)] bg-[#f0f0f0] mx-auto my-6 p-8 rounded-2xl;
-}
+} */
 
-.dark .introduce {
-  @apply flex flex-col items-center gap-6 w-4/5 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-1px_rgba(0,0,0,0.06)] bg-[#080857] mx-auto my-6 p-8 rounded-2xl;
+.introduce {
+  @apply flex flex-col items-center gap-6 w-4/5 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-1px_rgba(0,0,0,0.06)] bg-[#62a0c6] mx-auto my-6 p-8 rounded-2xl;
 }
 
 .repo-container {
@@ -107,4 +107,11 @@ body {
   .repo-container {
     grid-template-columns: 1fr;
   }
+}
+
+.dark .heading {
+  color: #fff;
+}
+.dark .form__label {
+  color: #fff;
 }
