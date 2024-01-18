@@ -90,19 +90,15 @@ body {
 .profile__name {
   @apply text-[length:var(--h2-font-size)];
 }
-/* .introduce {
-  @apply flex flex-col items-center gap-6 w-4/5 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-1px_rgba(0,0,0,0.06)] bg-[#f0f0f0] mx-auto my-6 p-8 rounded-2xl;
-} */
 
 .introduce {
   @apply flex flex-col items-center gap-6 w-4/5 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-1px_rgba(0,0,0,0.06)] bg-[#62a0c6] mx-auto my-6 p-8 rounded-2xl;
 }
 
 .repo-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1rem;
+  @apply grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-4;
 }
+
 @media (max-width: 600px) {
   .repo-container {
     grid-template-columns: 1fr;
@@ -115,3 +111,31 @@ body {
 .dark .form__label {
   color: #fff;
 }
+
+.divider {
+  @apply my-5 border-t-black border-t border-solid;
+}
+.dark .divider {
+  @apply border-t-white border-t border-solid;
+}
+
+.skills {
+  @apply flex flex-col items-center gap-6 w-[20%] shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-1px_rgba(0,0,0,0.06)] bg-[#62a0c6] mx-auto my-6 p-8 rounded-2xl;
+}
+.skills-container {
+  @apply flex justify-between;
+}
+
+.skills__group {
+  @apply grid content-start gap-y-4;
+}
+.skills__data {
+  @apply flex gap-x-2;
+}
+.skills__data i {
+  font-size: 2em;
+}
+.skills__name {
+  @apply text-[length:var(--normal-font-size)] font-medium leading-[18px];
+}
+
