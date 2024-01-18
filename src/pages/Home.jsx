@@ -1,7 +1,6 @@
 import React from 'react'
 import 'boxicons/css/boxicons.min.css';
 import avatar from '../assets/img/avatar.png'
-import { useState } from 'react';
 import '../App.css'
 
 const Home = () => {
@@ -23,11 +22,13 @@ const Home = () => {
         <h3 className="profile__profession">NMK</h3>         
       </div>
       <div className="introduce flex items-center gap-2">
-        <span>
-        <i className='bx bxs-map' style={{color:'#0a3dee'}} ></i>
-        </span>
-        <div className="location">
-          <h3>Bac Ninh, Viet Nam</h3>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <span>
+            <i className='bx bxs-map' style={{color:'#0a3dee'}} ></i>
+          </span>
+          <div className="location">
+            <h3>Bac Ninh, Viet Nam</h3>
+          </div>
         </div>
         <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, porro facere. Quae maiores praesentium temporibus voluptatibus nemo magnam incidunt dolores, ratione reprehenderit similique tenetur expedita corrupti error hic ipsa consequatur blanditiis iusto voluptatem mollitia. Ex aliquam ea deleniti. Non aperiam eveniet enim deleniti laborum placeat ea, voluptate incidunt nobis, distinctio repellat ducimus autem.</h3>
       </div>

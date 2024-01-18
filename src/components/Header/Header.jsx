@@ -45,37 +45,39 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleStickyHeader)
   })
   const toggleMenu = () => menuRef.current.classList.toggle('show__menu')
-  return <header className='header flex items-center' ref={headerRef}>
-    <div className="container">
-      <div className='flex items-center justify-between'>
-            {/* LOGO */}
-        <div>
-          <a href="/"><img src={logo} alt="logo" /></a>
-        </div>
-            {/* MENU */}
-        <div className='navigation' ref={menuRef} onClick={toggleMenu}>
-          <ul className="menu flex items-center gap-[2.7rem]">
-            {
-              navLinks.map((link,index) => <li key = {index} className='block'>
-                <NavLink to = {link.path} className={navClass => navClass.isActive 
-                  ? 'text-primaryColor text-[16px] leading-7 font-semibold '
-                  :'text-textColor text-[16px] leading-7 font-semibold hover:text-primaryColor '}
-                  >
-                    {link.display}</NavLink>
-              </li>)
-            }
-          </ul>
-        </div>
-              {/* NAV */}
-        <div className='flex items-center gap-4'>
-          
-            <span className='md:hidden' onClick={toggleMenu}>
-              <BiMenu className = 'w-6 h-6 cursor-pointer' />
-            </span>
+  return (
+    <header className='header flex items-center' ref={headerRef}>
+      <div className="container">
+        <div className='flex items-center justify-between'>
+              {/* LOGO */}
+          <div>
+            <a href="/"><img src={logo} alt="logo" /></a>
+          </div>
+              {/* MENU */}
+          <div className='navigation' ref={menuRef} onClick={toggleMenu}>
+            <ul className="menu flex items-center gap-[2.7rem]">
+              {
+                navLinks.map((link,index) => <li key = {index} className='block'>
+                  <NavLink to = {link.path} className={navClass => navClass.isActive 
+                    ? 'text-primaryColor text-[16px] leading-7 font-semibold '
+                    :'text-textColor text-[16px] leading-7 font-semibold hover:text-primaryColor '}
+                    >
+                      {link.display}</NavLink>
+                </li>)
+              }
+            </ul>
+          </div>
+                {/* NAV */}
+          <div className='flex items-center gap-4'>
+            
+              <span className='md:hidden' onClick={toggleMenu}>
+                <BiMenu className = 'w-6 h-6 cursor-pointer' />
+              </span>
+          </div>
         </div>
       </div>
-    </div>
-  </header>
+    </header>
+  )
 }
 
 export default Header
