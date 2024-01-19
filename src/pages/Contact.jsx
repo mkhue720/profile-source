@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import emailjs from '@emailjs/browser';
+import { Helmet } from 'react-helmet';
 ///emailjs.com
 
 const Contact = () => {
@@ -16,6 +17,10 @@ const Contact = () => {
       });
   };
   return (
+      <>
+      <Helmet>
+        <title>Contact | NMK</title>
+      </Helmet>
       <section>
         <div className="px-4 mx-auto max-w-screen-md">
           <h2 className='heading text-center'>
@@ -44,6 +49,7 @@ const Contact = () => {
           </form>
         </div>
     </section>
+      </>
   )
 }
 

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
 
 const Blog = () => {
   const [blogs, setBlogs] = useState([]);
@@ -13,7 +14,7 @@ const Blog = () => {
           id: blog.id,
           title: blog.title,
           imageUrl: blog.images && blog.images[0] ? blog.images[0].url : null,
-          url: blog.url,
+          url: `/blog/${blog.id}`,
         }));
         console.log(data.items)
 
@@ -25,6 +26,11 @@ const Blog = () => {
   }, []);
 
   return (
+    <>
+    <Helmet>
+      <title>Blog | NMK</title>
+      <meta name="description" content="Ngô Minh Khuê" />
+    </Helmet>
     <div className='repo-container'>
       {blogs.map(blog => (
         <div key={blog.id} className="introduce flex items-center gap-2">
@@ -35,6 +41,7 @@ const Blog = () => {
         </div>
       ))}
     </div>
+    </>
   );
 };
 

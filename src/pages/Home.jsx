@@ -2,12 +2,16 @@ import React from 'react'
 import 'boxicons/css/boxicons.min.css';
 import avatar from '../assets/img/avatar.png'
 import '../App.css'
+import { Helmet } from 'react-helmet';
 
 const Home = () => {
 
   return (
     <>
-    
+    <Helmet>
+      <title>Home | NMK</title>
+      <meta name="description" content="Ngô Minh Khuê" />
+    </Helmet>
     <div className="block w-full opacity-1 transform: translate-y-0">
       <div className="profile__data">      
         <div className="profile__perfil">

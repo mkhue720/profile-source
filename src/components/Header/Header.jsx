@@ -60,9 +60,10 @@ const Header = () => {
                 navLinks.map((link,index) => <li key = {index} className='block'>
                   <NavLink to = {link.path} className={navClass => navClass.isActive 
                     ? 'text-primaryColor text-[16px] leading-7 font-semibold '
-                    :'text-textColor text-[16px] leading-7 font-semibold hover:text-primaryColor '}
+                    :'text-whiteColor text-[16px] leading-7 font-semibold hover:text-primaryColor '}
                     >
-                      {link.display}</NavLink>
+                      {link.display}
+                  </NavLink>
                 </li>)
               }
             </ul>

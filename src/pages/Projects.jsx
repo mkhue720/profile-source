@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import 'boxicons/css/boxicons.min.css';
+import { Helmet } from 'react-helmet';
 
 const Projects = () => {
   const [repos, setRepos] = useState([]);
@@ -34,6 +35,10 @@ const Projects = () => {
   }
 
   return (
+    <>
+    <Helmet>
+      <title>Projects | NMK</title>
+    </Helmet>
     <div className='repo-container'>
       {repos.map((repo) => (
         <div key={repo.id} className="introduce flex items-center gap-2 ">
@@ -60,6 +65,7 @@ const Projects = () => {
         </div>
       ))}
     </div>
+    </>
   );
 };
 

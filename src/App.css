@@ -55,6 +55,9 @@ body {
 .theme-toggle button:focus {
   @apply outline-none;
 }
+.header {
+  background: #00000084;
+}
 @media only screen and (max-width: 768px) {
   .navigation {
     @apply w-full h-full fixed z-[100] hidden left-0 top-0;
@@ -62,7 +65,7 @@ body {
   }
   .menu {
     @apply w-60 h-full absolute z-[200] flex-col justify-center items-center leading-[30px] right-0 top-0;
-    background: #fff;
+    background: #00000084;
   }
   .show__menu {
     @apply block;
@@ -71,6 +74,8 @@ body {
   .theme-toggle {
     @apply absolute p-0 right-[30px] top-[80px];
   }
+
+
 }
 
 .profile__data {
