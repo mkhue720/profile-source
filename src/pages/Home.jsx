@@ -40,11 +40,11 @@ const Home = () => {
         <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, porro facere. Quae maiores praesentium temporibus voluptatibus nemo magnam incidunt dolores, ratione reprehenderit similique tenetur expedita corrupti error hic ipsa consequatur blanditiis iusto voluptatem mollitia. Ex aliquam ea deleniti. Non aperiam eveniet enim deleniti laborum placeat ea, voluptate incidunt nobis, distinctio repellat ducimus autem.</h3>
       </div>
       <div className="divider"></div>
-      <h1 style={{ textAlign: 'center', fontWeight: 'bold', fontSize: '32px' }}>Skills</h1>
-      <div className="skills-container flex">
-        <div className="skills flex items-center gap-2">
+      <h1 className='header__title'>Skills</h1>
+      <div className="skills-container flex flex-col md:flex-row">
+        <div className="skills flex items-center gap-2 ">
           <h1 style={{ textAlign: 'center', fontWeight: 'bold', fontSize: '22px' }}>FrontEnd</h1>
-          <div className="skills__group grid grid-cols-2 gap-6">
+          <div className="skills__group grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="skills__data">
             <i className="bx bxl-html5 bx-tada" style={{ color: "#f06d06" }} />
               <div>
@@ -83,9 +83,9 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className="skills flex items-center gap-2">
+        <div className="skills flex items-center gap-2 ">
           <h1 style={{ textAlign: 'center', fontWeight: 'bold', fontSize: '22px' }}>BackEnd</h1>
-          <div className="skills__group grid grid-cols-2 gap-6">
+          <div className="skills__group grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="skills__data">
             <i className="bx bxl-nodejs bx-tada" style={{ color: "#028901" }} />
               <div>
@@ -93,7 +93,7 @@ const Home = () => {
               </div>
             </div>
             <div className="skills__data">
-              <i className="ri-checkbox-circle-line"></i>
+              
               <div>
                 <h3 className="skills__name">ExpressJs</h3>
               </div>
@@ -105,7 +105,7 @@ const Home = () => {
               </div>
             </div>
             <div className="skills__data">
-              <i className="ri-checkbox-circle-line"></i>
+              
               <div>
                 <h3 className="skills__name">My SQL</h3>
               </div>
@@ -126,6 +126,7 @@ const Home = () => {
         </div>
       </div>
       <div className="divider"></div>
+      <h1 className="header__title">Follow Me</h1>
     </div>
     </>
   )

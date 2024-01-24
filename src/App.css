@@ -72,9 +72,8 @@ body {
 
   }
   .theme-toggle {
-    @apply absolute p-0 right-[30px] top-[80px];
+    @apply absolute p-0 right-[50px] top-[30px];
   }
-
 
 }
 
@@ -124,18 +123,20 @@ body {
   @apply border-t-white border-t border-solid;
 }
 
-.skills {
-  @apply flex flex-col items-center gap-6 w-[20%] shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-1px_rgba(0,0,0,0.06)] bg-[#62a0c6] mx-auto my-6 p-8 rounded-2xl;
-}
+
 .skills-container {
   @apply flex justify-between;
+}
+
+.skills {
+  @apply flex flex-col items-center gap-6 w-full md:w-[20%] shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-1px_rgba(0,0,0,0.06)] bg-[#62a0c6] mx-auto my-6 p-8 rounded-2xl;
 }
 
 .skills__group {
   @apply grid content-start gap-y-4;
 }
 .skills__data {
-  @apply flex gap-x-2;
+  @apply flex gap-x-3;
 }
 .skills__data i {
   font-size: 2em;
@@ -144,3 +145,30 @@ body {
   @apply text-[length:var(--normal-font-size)] font-medium leading-[18px];
 }
 
+.title__blog {
+  text-align: center;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.header__title {
+  @apply text-center font-bold text-3xl md:text-4xl lg:text-5xl;
+}
+
+.scroll-to-top {
+  @apply fixed hidden bg-[#007bff] text-white cursor-pointer px-[15px] py-2.5 rounded-[5px] border-[none] right-5 bottom-5;
+}
+.scroll-to-top.visible {
+  @apply block;
+}
+
+.extensions__container {
+  @apply flex justify-between;
+}
+
+.extensions {
+  @apply flex flex-col items-center gap-6 w-full md:w-[20%] shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-1px_rgba(0,0,0,0.06)] bg-[#fff] mx-auto my-6 p-8 rounded-2xl;
+}
+.dark .extensions {
+  @apply bg-[#000];
+}

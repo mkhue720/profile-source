@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import logo from '../../assets/img/logo.png';
 import { NavLink } from 'react-router-dom';
 import { RiHome2Line, RiArticleLine, RiBriefcaseLine, RiPhoneFill } from 'react-icons/ri';
-import { BiMenu } from 'react-icons/bi';
+import { BiMenu, BiExtension } from 'react-icons/bi';
 import '../../App.css'
 
 const navLinks = [
@@ -20,6 +20,11 @@ const navLinks = [
     path: '/projects',
     display: 'Projects',
     icon: <RiBriefcaseLine />
+  },
+  {
+    path: '/extensions',
+    display: 'Extensions',
+    icon: <BiExtension />
   },
   {
     path: '/contact',
@@ -62,7 +67,10 @@ const Header = () => {
                     ? 'text-primaryColor text-[16px] leading-7 font-semibold '
                     :'text-whiteColor text-[16px] leading-7 font-semibold hover:text-primaryColor '}
                     >
-                      {link.display}
+                      <div className="flex items-center gap-2">
+                        <span>{link.icon}</span>
+                        <span>{link.display}</span>
+                      </div>
                   </NavLink>
                 </li>)
               }

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import 'boxicons/css/boxicons.min.css';
 import './App.css'
 import Layout from './layout/Layout'
+import ScrollTop from './components/ScrollToTop';
 
 function App() {
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
@@ -25,7 +26,8 @@ function App() {
           ? <i className='bx bx-moon' ></i>
           : <i className='bx bx-sun' style={{color:"#f6fc07"}}  ></i>}
         </button>
-    </div>
+      </div>
+      <ScrollTop />
     </div>
   )
 }

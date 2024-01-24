@@ -36,7 +36,7 @@ const BlogDetails = () => {
             <meta name="description" content="Ngô Minh Khuê" />
         </Helmet>
         <div className='blog-details'>
-            <h2>{blog.title}</h2>
+            <h2 className='title__blog'>{blog.title}</h2>
             {blog.imageUrl && <img src={blog.imageUrl} alt={blog.title} />}
             <div dangerouslySetInnerHTML={{ __html: blog.content }} />
         </div>
