@@ -42,5 +42,5 @@
   },
   "vercel": {
     "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
-  },
+  }
 }
