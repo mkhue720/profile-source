@@ -8,7 +8,7 @@ import Extensions from '../pages/Extensions/Extensions'
 import Weather from '../pages/Extensions/Weather'
 import Calendar from '../pages/Extensions/Calendar'
 import Translator from '../pages/Extensions/Translator'
-import ImgToLink from '../pages/Extensions/ImgToLink'
+//import ImgToLink from '../pages/Extensions/ImgToLink'
 
 const Routers = () => {
   return (
@@ -23,7 +23,7 @@ const Routers = () => {
         <Route path='/extensions/weather' element = {<Weather />} />
         <Route path='/extensions/calendar' element = {<Calendar />} />
         <Route path='/extensions/translator' element = {<Translator />} />
-        <Route path='/extensions/imgtolink' element = {<ImgToLink />} />
+{/*         <Route path='/extensions/imgtolink' element = {<ImgToLink />} /> */}
     </Routes>
   )
 }
