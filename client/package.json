@@ -42,11 +42,15 @@
     "vite": "^5.0.8"
   },
   "vercel": {
+<<<<<<< HEAD:client/package.json
     "rewrites": [
       {
         "source": "/(.*)",
         "destination": "/index.html"
       }
     ]
+=======
+    "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+>>>>>>> ee69f096822f99cbc3957279501b2c9f8e329335:package.json
   }
 }
