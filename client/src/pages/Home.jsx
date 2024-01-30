@@ -44,7 +44,7 @@ const Home = () => {
       <div className="skills-container flex flex-col md:flex-row">
         <div className="skills flex items-center gap-2 ">
           <h1 style={{ textAlign: 'center', fontWeight: 'bold', fontSize: '22px' }}>FrontEnd</h1>
-          <div className="skills__group grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="skills__group grid grid-cols-1 md:grid-cols-2 gap-6 ">
             <div className="skills__data">
             <i className="bx bxl-html5 bx-tada" style={{ color: "#f06d06" }} />
               <div>

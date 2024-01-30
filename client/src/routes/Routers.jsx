@@ -10,7 +10,7 @@ import Extensions from '../pages/Extensions/Extensions';
 import Weather from '../pages/Extensions/Weather';
 import Calendar from '../pages/Extensions/Calendar';
 import Translator from '../pages/Extensions/Translator';
-import ImgToLink from '../pages/Extensions/ImgToLink';
+import ImgToLink from '../pages/Extensions/ImgtoLink';
 import Login from '../pages/Login';
 import Dashboard from '../pages/Dashboard';
 import AddBlog from '../pages/Blog/AddBlog';

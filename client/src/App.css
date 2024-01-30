@@ -129,14 +129,14 @@ body {
 }
 
 .skills {
-  @apply flex flex-col items-center gap-6 w-full md:w-[20%] shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-1px_rgba(0,0,0,0.06)] bg-[#62a0c6] mx-auto my-6 p-8 rounded-2xl;
+  @apply flex flex-col items-center gap-6 w-[80%] md:w-[30%] shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-1px_rgba(0,0,0,0.06)] bg-[#62a0c6] mx-auto my-6 p-8 rounded-2xl;
 }
 
 .skills__group {
   @apply grid content-start gap-y-4;
 }
 .skills__data {
-  @apply flex gap-x-3;
+  @apply flex gap-x-2 mr-0;
 }
 .skills__data i {
   font-size: 2em;
@@ -144,6 +144,7 @@ body {
 .skills__name {
   @apply text-[length:var(--normal-font-size)] font-medium leading-[18px];
 }
+
 
 .title__blog {
   text-align: center;
