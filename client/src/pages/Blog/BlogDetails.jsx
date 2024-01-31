@@ -1,45 +1,49 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import { BASE_URL } from '../../config.js';
 
 const BlogDetails = () => {
-    const [blog, setBlog] = useState(null);
+    const [blog, setBlog] = useState({});
+    const [error, setError] = useState(null);
     const { id } = useParams();
-    const API_KEY = 'AIzaSyDnKFgVf_UBcUIzXO7ccle0fDfVEka8PU0';
 
     useEffect(() => {
-        fetch(`https://www.googleapis.com/blogger/v3/blogs/2995102736555091421/posts/${id}?key=${API_KEY}`)
-            .then(response => response.json())
-            .then(data => {
-                const formattedData = {
-                    id: data.id,
-                    title: data.title,
-                    imageUrl: data.images && data.images[0] ? data.images[0].url : null,
-                    content: data.content,
-                };
+        const fetchBlog = async () => {
+            try {
+                const response = await fetch(`${BASE_URL}/blogs/${id}`);
+                const data = await response.json();
+                console.log('Data from API:', data);
+                if (!response.ok) {
+                    throw new Error(data.message);
+                }
+                setBlog(data.data);
+            } catch (error) {
+                console.error('Failed to fetch blog:', error);
+                setError('Failed to fetch blog. Please try again later.');
+            }
+        };
 
-                setBlog(formattedData);
-            })
-            .catch(error => {
-                console.error('Error fetching data:', error);
-            });
+        fetchBlog();
     }, [id]);
-
-    if (!blog) {
-        return <div>Loading...</div>;
-    }
 
     return (
         <>
-        <Helmet>
-            <title>{blog.title} | NMK</title>
-            <meta name="description" content="Ngô Minh Khuê" />
-        </Helmet>
-        <div className='blog-details'>
-            <h2 className='title__blog'>{blog.title}</h2>
-            {blog.imageUrl && <img src={blog.imageUrl} alt={blog.title} />}
-            <div dangerouslySetInnerHTML={{ __html: blog.content }} />
-        </div>
+            <Helmet>
+                <title>{blog.title || 'Loading...'} | NMK</title>
+                <meta name="description" content="Ngô Minh Khuê" />
+            </Helmet>
+            <div className='blog-details'>
+                {error ? (
+                    <p>{error}</p>
+                ) : (
+                    <div key={blog._id}>
+                        <h2 className='title__blog'>{blog.title}</h2>
+                        {blog.imageUrl && <img src={blog.imageUrl} alt={blog.title} />}
+                        <div dangerouslySetInnerHTML={{ __html: blog.content }} />
+                    </div>
+                )}
+            </div>
         </>
     );
 };

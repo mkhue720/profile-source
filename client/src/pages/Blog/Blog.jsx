@@ -1,56 +1,53 @@
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
+import { Link, useNavigate } from 'react-router-dom';
+import { BASE_URL } from '../../config.js';
+import 'boxicons/css/boxicons.min.css';
 
 const Blog = () => {
   const [blogs, setBlogs] = useState([]);
-  const [loading, setLoading] = useState(true);
-
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchBlogs = async () => {
       try {
-        const API_KEY = 'AIzaSyDnKFgVf_UBcUIzXO7ccle0fDfVEka8PU0';
-        const BLOG_ID = '2995102736555091421';
-
-        const response = await fetch(`https://www.googleapis.com/blogger/v3/blogs/${BLOG_ID}/posts?key=${API_KEY}`);
+        const response = await fetch(`${BASE_URL}/blogs/`);
         const data = await response.json();
 
-        const formattedData = data.items.map(blog => ({
-          id: blog.id,
-          title: blog.title,
-          imageUrl: blog.images && blog.images[0] ? blog.images[0].url : null,
-          url: `/blog/${blog.id}`,
-        }));
-
-        setBlogs(formattedData);
+        if (!response.ok) {
+          throw new Error(data.message);
+        }
+        setBlogs(data.data);
       } catch (error) {
-        console.error('Error fetching data:', error);
-      } finally {
-        setLoading(false);
+        console.error('Failed to fetch blogs:', error);
+        setError('Failed to fetch blogs. Please try again later.');
       }
     };
 
-    fetchData();
+    fetchBlogs();
   }, []);
-
-  if (loading) {
-    return <p>Loading...</p>;
-  }
 
   return (
     <>
       <Helmet>
-        <title>Blog | NMK</title>
-        <meta name="description" content="Ngô Minh Khuê" />
+        <title>Home | NMK</title>
       </Helmet>
-      <div className='repo-container'>
-        {blogs.map(blog => (
-          <div key={blog.id} className="introduce flex items-center gap-2">
-            <a href={blog.url}>
-              <h2>{blog.title}</h2>
-            </a>
-            {blog.imageUrl && <img src={blog.imageUrl} alt={blog.title} />}
-          </div>
-        ))}
+      <div className='repo-container mt-10 mr-auto'>
+        {error ? (
+          <p>{error}</p>
+        ) : blogs.length > 0 ? (
+          blogs.map((blog) => (
+            <div key={blog._id} className="introduce flex items-center gap-2">
+              <Link to={`/blog/${blog._id}`}>
+                <h3>Title: {blog.title}</h3>
+                <p>Author: {blog.author}</p>
+                {blog.image && <img src={blog.image} alt={blog.title} className='w-[100px] h-[100px]' />}
+              </Link>
+            </div>
+          ))
+        ) : (
+          <p>No blogs available.</p>
+        )}
       </div>
     </>
   );

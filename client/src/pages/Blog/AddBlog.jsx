@@ -1,50 +1,121 @@
 import React, { useState } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 import { Helmet } from 'react-helmet';
+import { BASE_URL } from '../../config.js';
+import { Link, useNavigate } from 'react-router-dom';
+import { HashLoader } from 'react-spinners';
+import { toast } from 'react-toastify';
+import uploadImageToCloudinary from '../../untils/uploadCloudinary.js'
 
-function AddBlog() {
-  const [title, setTitle] = useState('');
-  const [author, setAuthor] = useState('');
-  const [image, setImage] = useState('');
-  const [content, setContent] = useState('');
+const AddBlog = () => {
+  const [formData, setFormData] = useState({
+    title: '',
+    author: '',
+    image: '',
+    content: ''
+  });
 
-  const createPost = () => {
-    alert(`Bài Đăng Mới:\nTitle: ${title}\nTác Giả: ${author}\nẢnh: ${image}\nNội Dung: ${content}`);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const handleInputChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleFileChange = async(event) => {
+    const file = event.target.files[0]
+    const data = await uploadImageToCloudinary(file)
+    setFormData({... formData, image:data.url})
+  };
+
+  const submitHandler = async (event) => {
+    event.preventDefault();
+    setLoading(true);
+
+    try {
+      const res = await fetch(`${BASE_URL}/blogs/add`, {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await res.json();
+
+      if (!res.ok) {
+        throw new Error(result.message);
+      }
+
+      setLoading(false);
+      toast.success(result.message);
+      navigate('/admin/dashboard');
+    } catch (err) {
+      toast.error(err.message);
+      setLoading(false);
+    }
   };
 
   return (
     <>
-    <Helmet>
-      <title>Add Blog | NMK</title>
-    </Helmet>
-    <form className='w-[90%] mx-auto my-5 p-5 rounded-[5px]'>
-      <label className='form__label' htmlFor="title">Title:</label>
-      <input className='w-full box-border mb-[15px] p-2.5' type="text" id="title" name="title"  required onChange={e => setTitle(e.target.value)} />
+      <Helmet>
+        <title>Thêm Bài Viết | NMK</title>
+      </Helmet>
+      <form className='w-[90%] mx-auto my-5 p-5 rounded-[5px]'>
+        <label className='form__label' htmlFor="title">Tiêu Đề:</label>
+        <input
+          className='w-full box-border mb-[15px] p-2.5'
+          type="text"
+          id="title"
+          name="title"
+          value={formData.title}
+          required
+          onChange={handleInputChange}
+        />
 
-      <label className='form__label' htmlFor="author">Tác Giả:</label>
-      <input className='w-full box-border mb-[15px] p-2.5' type="text" id="author" name="author" required onChange={e => setAuthor(e.target.value)} />
+        <label className='form__label' htmlFor="author">Tác Giả:</label>
+        <input
+          className='w-full box-border mb-[15px] p-2.5'
+          type="text"
+          id="author"
+          name="author"
+          value={formData.author}
+          required
+          onChange={handleInputChange}
+        />
 
-      <label className='form__label' htmlFor="image">Chọn Ảnh:</label>
-      <input className='w-full box-border mb-[15px] p-2.5' type="file" id="image" name="image" accept="image/*" onChange={e => setImage(e.target.value)} />
+        <label className='form__label' htmlFor="image">Chọn Ảnh:</label>
+        <input
+          className='w-full box-border mb-[15px] p-2.5'
+          type="file"
+          id="image"
+          name="image"
+          accept='.jpg, .png,'
+          onChange={handleFileChange}
+        />
 
-      <label className='form__label' htmlFor="content">Nội Dung:</label>
-      <Editor
-      apiKey='kme8f0v2vs9g6fonck3h0yudeqco5otv63i80yzmu0iuulls'
-      init={{
-        plugins: 'ai tinycomments mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss',
-        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-        tinycomments_mode: 'embedded',
-        tinycomments_author: 'Author name',
-        mergetags_list: [
-          { value: 'First.Name', title: 'First Name' },
-          { value: 'Email', title: 'Email' },
-        ],
-        ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
-      }}
-    />
+        <label className='form__label' htmlFor="content">Nội Dung:</label>
+        <Editor
+          value={formData.content}
+          onEditorChange={(content) => setFormData({ ...formData, content })}
+          apiKey='kme8f0v2vs9g6fonck3h0yudeqco5otv63i80yzmu0iuulls'
+          init={{
+            plugins: 'ai tinycomments mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name',
+            mergetags_list: [
+              { value: 'First.Name', title: 'First Name' },
+              { value: 'Email', title: 'Email' },
+            ],
+            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+          }}
+        />
 
-      <button className='btn' type="button" onClick={createPost}>Tạo Bài Đăng</button>
-    </form>
+        <button className='btn' type="button" onClick={submitHandler}>
+          {loading ? <HashLoader size={25} color='#fff' /> : 'Đăng Bài'}
+        </button>
+      </form>
     </>
   );
 }

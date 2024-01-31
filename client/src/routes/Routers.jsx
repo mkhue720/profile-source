@@ -14,6 +14,7 @@ import ImgToLink from '../pages/Extensions/ImgtoLink';
 import Login from '../pages/Login';
 import Dashboard from '../pages/Dashboard';
 import AddBlog from '../pages/Blog/AddBlog';
+import EditBlog from '../pages/Blog/EditBlog';
 
 const Routers = () => {
   return (
@@ -39,6 +40,16 @@ const Routers = () => {
         <Route path="/admin/addblog" element={
           <PrivateRoute allowedRoles={['admin']} >
             <AddBlog />
+          </PrivateRoute>
+        } />
+        <Route path="/admin/editblog/:blogId" element={
+          <PrivateRoute allowedRoles={['admin']} >
+            <EditBlog />
+          </PrivateRoute>
+        } />
+        <Route path="/admin/dashboard/:blogId" element={
+          <PrivateRoute allowedRoles={['admin']} >
+            <Dashboard />
           </PrivateRoute>
         } />
       </Routes>
