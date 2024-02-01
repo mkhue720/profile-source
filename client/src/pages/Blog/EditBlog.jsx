@@ -13,6 +13,7 @@ const EditBlog = () => {
     author: '',
     image: '',
     content: '',
+    updateAt: ''
   });
 
   useEffect(() => {
@@ -126,7 +127,7 @@ const EditBlog = () => {
           }}
         />
 
-      <button className='btn' type="submit">Save Changes</button>
+      <button className='btn' type="submit" value={blog.updateAt}>Save Changes</button>
     </form>
     </>
   );

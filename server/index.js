@@ -12,6 +12,13 @@ const port = process.env.PORT || 8000
 const corsOptions = {
     origin: true
 }
+// app.use(express.static('../client/dist'));
+
+// app.use(history());
+
+// app.get('*', (req, res) => {
+//   res.sendFile('../client/dist/index.html', { root: __dirname });
+// });
 app.get('/',(req,res) => {
     res.send('API is working')
 })
@@ -28,6 +35,7 @@ const connectDB = async() => {
         console.log('connect db failed')
     }
 }
+
 // middleware
 app.use(express.json())
 app.use(cookieParser())
