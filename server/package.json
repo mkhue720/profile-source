@@ -21,6 +21,7 @@
     "jsonwebtoken": "^9.0.2",
     "moment-timezone": "^0.5.44",
     "mongodb": "^6.3.0",
-    "mongoose": "^8.1.1"
+    "mongoose": "^8.1.1",
+    "react-dom": "^18.2.0"
   }
 }
