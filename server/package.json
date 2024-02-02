@@ -17,7 +17,6 @@
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.4.1",
-    "esm": "^3.2.25",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.2",
     "moment-timezone": "^0.5.44",
@@ -28,6 +27,7 @@
   "devDependencies": {
     "@babel/core": "^7.23.9",
     "@babel/node": "^7.23.9",
+    "@babel/plugin-transform-react-jsx-development": "^7.22.5",
     "@babel/preset-env": "^7.23.9",
     "@babel/preset-react": "^7.23.3",
     "babel-cli": "^6.26.0"
