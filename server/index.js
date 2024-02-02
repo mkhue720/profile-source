@@ -9,6 +9,7 @@ import blogRoute from './Routes/blog.js'
 import path from 'path'
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+import history from 'connect-history-api-fallback';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -18,6 +19,9 @@ dotenv.config()
 const app = express()
 const port = process.env.PORT || 8000
 
+app.get('/',(req,res) => {
+        res.send('API is working')
+    })
 const corsOptions = {
         origin: true
 }
@@ -44,42 +48,7 @@ app.use('/api/v1/auth', authRoute)
 app.use('/api/v1/users', userRoute)
 app.use('/api/v1/blogs', blogRoute)
 
-// app.get('*', (req, res) => {
-//     const context = {};
-//     const sheet = new ServerStyleSheet();
 
-//     const appHtml = renderToString(
-//         sheet.collectStyles(
-//             <StaticRouter location={req.url} context={context}>
-//                 <App />
-//             </StaticRouter>
-//         )
-//     );
-
-//     const styleTags = sheet.getStyleTags(); // or sheet.getStyleElement();
-    
-//     if (context.url) {
-//         res(301, context.url);
-//     } else {
-//         const html = `
-//             <!DOCTYPE html>
-//             <html>
-//                 <head>
-//                     ${styleTags}
-//                 </head>
-//                 <body>
-//                     <div id="root">${appHtml}</div>
-//                     <script src="/bundle.js"></script>
-//                 </body>
-//             </html>
-//         `;
-
-//         res.send(html);
-//     }
-// });
-// app.get('/app', (req, res) => {
-//         res.send(renderSSR(React.createElement(App, null)));
-//       })
     
 app.use((error,req,res,next)=>{
         const statusCode = error.statusCode || 500 ;
@@ -90,10 +59,13 @@ app.use((error,req,res,next)=>{
             message});
         });
         
-        app.use(express.static(path.join(__dirname,"client/dist")));
-        app.get("*", (req,res)=>{
-            res.sendFile(path.join(__dirname, "client","dist","index.html"))
-        });
+        app.use(express.static('../client/build'));
+
+        app.use(history());
+
+        app.get('*', (req, res) => {
+  res.sendFile('../client/build/index.html', { root: __dirname });
+});
 app.listen(port, () => {
         connectDB();
         console.log('Server is running on port ' + port)
