@@ -15,6 +15,7 @@ import Login from '../pages/Login';
 import Dashboard from '../pages/Dashboard';
 import AddBlog from '../pages/Blog/AddBlog';
 import EditBlog from '../pages/Blog/EditBlog';
+import NotFound from '../pages/NotFound';
 
 const Routers = () => {
   return (
@@ -32,6 +33,7 @@ const Routers = () => {
         <Route path='/extensions/translator' element={<Translator />} />
         <Route path='/extensions/imgtolink' element={<ImgToLink />} />
         <Route path='/admin/login' element={<Login />} />
+        <Route path='*' element={<NotFound />} />
         <Route path="/admin/dashboard" element={
           <PrivateRoute allowedRoles={['admin']} >
             <Dashboard />
