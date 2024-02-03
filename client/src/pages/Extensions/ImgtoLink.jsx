@@ -5,38 +5,40 @@ const ImgtoLink = () => {
   const [imgurLink, setImgurLink] = useState("");
   const [copyButtonVisible, setCopyButtonVisible] = useState(false);
 
-  const handleImageChange = (event) => {
+  const handleImageChange = async (event) => {
     const file = event.target.files[0];
     if (file) {
-      uploadImageToImgur(file);
+      try {
+        const link = await uploadImageToImgur(file);
+        setImgSrc(link);
+        setImgurLink(link);
+        setCopyButtonVisible(true);
+      } catch (error) {
+        console.error("Error uploading image:", error);
+        // Xử lý lỗi một cách graceful, ví dụ: hiển thị một thông báo lỗi cho người dùng
+      }
     }
   };
 
-  const uploadImageToImgur = (imageFile) => {
+  const uploadImageToImgur = async (imageFile) => {
     const formData = new FormData();
     formData.append("image", imageFile);
 
-    fetch("https://api.imgur.com/3/image", {
+    const response = await fetch("https://api.imgur.com/3/image", {
       method: "POST",
       headers: {
-        Authorization: "Client-ID c4ad205083597e6", // Replace with your Client-ID
+        Authorization: "Client-ID c4ad205083597e6", // Thay thế bằng Client-ID của bạn
       },
       body: formData,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          setImgSrc(data.data.link);
-          setImgurLink(data.data.link);
-          setCopyButtonVisible(true);
-        } else {
-          throw new Error("Lỗi khi tải lên hình ảnh.");
-        }
-      })
-      .catch((error) => {
-        console.error("Error uploading image:", error);
-        // Handle error gracefully, e.g., show an error message to the user
-      });
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      return data.data.link;
+    } else {
+      throw new Error("Lỗi khi tải lên hình ảnh.");
+    }
   };
 
   const copyLinkToClipboard = () => {

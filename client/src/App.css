@@ -47,7 +47,7 @@ body {
   color: var(--text);
 }
 .theme-toggle {
-  @apply absolute p-[50px] right-0 top-0;
+  @apply absolute p-[25px] right-0 top-0;
 }
 .theme-toggle button {
   @apply text-2xl p-2.5;
@@ -173,4 +173,7 @@ body {
 .dark .extensions {
   @apply bg-[#000];
 }
+
+
+
 

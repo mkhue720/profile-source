@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Helmet from 'react-helmet';
-import './extensions.css';
+import './extension.css';
 
 const Weather = () => {
   useEffect(() => {
@@ -143,7 +143,7 @@ const Weather = () => {
         <title>Weather App | NMK</title>
       </Helmet>
       <div className="weather__container">
-        <div className="weather-input">
+        <div className="weather__input">
           <h3>Enter a City Name</h3>
           <input className="city-input" type="text" placeholder="E.g., New York, London, Tokyo" />
           <button className="search-btn">Search</button>

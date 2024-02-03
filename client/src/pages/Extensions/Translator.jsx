@@ -1,13 +1,13 @@
-// Translator.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
-import './extensions.css';
+import './extension.css';
+import { BiSolidVolumeFull, BiCopy, BiTransfer  } from "react-icons/bi";
 
 const Translator = () => {
   const [fromText, setFromText] = useState("");
   const [toText, setToText] = useState("");
   const [translateFrom, setTranslateFrom] = useState("en-GB");
-  const [translateTo, setTranslateTo] = useState("hi-IN");
+  const [translateTo, setTranslateTo] = useState("vi-VN");
   const countries = {
     "am-ET": "Amharic",
     "ar-SA": "Arabic",
@@ -106,12 +106,33 @@ const Translator = () => {
     "xh-ZA": "Xhosa",
     "yi-YD": "Yiddish",
     "zu-ZA": "Zulu"
-  };
+}
+const handleIconClick = (type) => {
+  if (!fromText || !toText) return;
+
+  let utterance;
+  if (type === "from") {
+    if (document.queryCommandSupported('copy')) {
+      navigator.clipboard.writeText(fromText);
+    }
+    utterance = new SpeechSynthesisUtterance(fromText);
+    utterance.lang = translateFrom;
+  } else if (type === "to") {
+    if (document.queryCommandSupported('copy')) {
+      navigator.clipboard.writeText(toText);
+    }
+    utterance = new SpeechSynthesisUtterance(toText);
+    utterance.lang = translateTo;
+  }
+
+  if (utterance) {
+    speechSynthesis.speak(utterance);
+  }
+};
 
   const handleExchange = () => {
     const tempText = fromText;
     const tempLang = translateFrom;
-
     setFromText(toText);
     setToText(tempText);
     setTranslateFrom(translateTo);
@@ -140,73 +161,79 @@ const Translator = () => {
       })
       .catch((error) => {
         console.error("Translation Error:", error);
+        console.log("API URL:", apiUrl);
         setToText("Translation Error");
       });
   };
 
-  useEffect(() => {
-    const options = Object.entries(countries).map(([country_code, label]) => (
-      <option key={country_code} value={country_code}>
-        {label}
-      </option>
-    ));
 
-    document.querySelectorAll("select").forEach((tag) => {
-      tag.innerHTML = options;
-    });
-  }, [countries]);
 
   return (
     <>
       <Helmet>
         <title>Translator App | NMK</title>
       </Helmet>
-      <div className="translator__container">
-        <div className="translator__wrapper">
-          <div className="text-input">
-            <textarea
-              spellCheck="false"
-              className="from-text"
-              placeholder="Enter text"
-              value={fromText}
-              onChange={(e) => setFromText(e.target.value)}
-            />
-            <textarea
-              spellCheck="false"
-              readOnly
-              disabled
-              className="to-text"
-              placeholder="Translation"
-              value={toText}
-            />
+      <div className="translator">
+        <div className="translator__container">
+          <div className="translator__wrapper">
+            <div className="text-input">
+              <textarea
+                spellCheck="false"
+                className="from-text"
+                placeholder="Enter text"
+                value={fromText}
+                onChange={(e) => setFromText(e.target.value)}
+              />
+              <textarea
+                spellCheck="false"
+                readOnly
+                disabled
+                className="to-text"
+                placeholder="Translation"
+                value={toText}
+              />
+            </div>
+            <ul className="controls">
+              <li className="row from">
+              <div className="icons">
+                <i id='from' onClick={() => handleIconClick('from')}><BiSolidVolumeFull /></i>
+                <i id='from' onClick={() => handleIconClick('from')}><BiCopy /></i>
+              </div>
+
+                <select
+                  value={translateFrom}
+                  onChange={(e) => setTranslateFrom(e.target.value)}
+                >
+                  {Object.entries(countries).map(([country_code, label]) => (
+                    <option key={country_code} value={country_code}>
+                      {label}
+                    </option>
+                  ))}
+                </select>
+              </li>
+              <li className="exchange" onClick={handleExchange}>
+                <BiTransfer />
+              </li>
+              <li className="row to">
+                <select
+                  value={translateTo}
+                  onChange={(e) => setTranslateTo(e.target.value)}
+                >
+                  {Object.entries(countries).map(([country_code, label]) => (
+                    <option key={country_code} value={country_code}>
+                      {label}
+                    </option>
+                  ))}
+                </select>
+                <div className="icons">
+                  <i id='to' onClick={() => handleIconClick('to')}><BiSolidVolumeFull /></i>
+                  <i id='to' onClick={() => handleIconClick('to')}><BiCopy /></i>
+                </div>
+              </li>
+            </ul>
           </div>
-          <ul className="controls">
-            <li className="row from">
-              <div className="icons">
-                <i id="from" className="fas fa-volume-up" />
-                <i id="from" className="fas fa-copy" />
-              </div>
-              <select
-                value={translateFrom}
-                onChange={(e) => setTranslateFrom(e.target.value)}
-              />
-            </li>
-            <li className="exchange" onClick={handleExchange}>
-              <i className="fas fa-exchange-alt" />
-            </li>
-            <li className="row to">
-              <select
-                value={translateTo}
-                onChange={(e) => setTranslateTo(e.target.value)}
-              />
-              <div className="icons">
-                <i id="to" className="fas fa-volume-up" />
-                <i id="to" className="fas fa-copy" />
-              </div>
-            </li>
-          </ul>
+          <button onClick={handleTranslate}>Translate Text</button>
         </div>
-        <button onClick={handleTranslate}>Translate Text</button>
       </div>
     </>
   );

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { BASE_URL } from '../../config.js';
 import 'boxicons/css/boxicons.min.css';
 
 const Blog = () => {
   const [blogs, setBlogs] = useState([]);
   const [error, setError] = useState(null);
-  const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
@@ -24,8 +24,18 @@ const Blog = () => {
       }
     };
 
-    fetchBlogs();
+    fetchBlogs()
+    .finally(() => {
+      setLoading(false);
+    });
   }, []);
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
 
   return (
     <>

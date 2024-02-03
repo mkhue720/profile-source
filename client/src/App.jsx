@@ -3,6 +3,7 @@ import 'boxicons/css/boxicons.min.css';
 import './App.css'
 import Layout from './layout/Layout'
 import ScrollTop from './components/ScrollToTop';
+import { BiMoon, BiSun } from "react-icons/bi";
 
 function App() {
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
@@ -23,8 +24,8 @@ function App() {
       <div className="theme-toggle ">
         <button onClick={toggleTheme}>
           {theme === 'light' 
-          ? <i className='bx bx-moon' ></i>
-          : <i className='bx bx-sun' style={{color:"#f6fc07"}}  ></i>}
+          ? <BiMoon />
+          : <BiSun style={{color:"#f6fc07"}} />}
         </button>
       </div>
       <ScrollTop />

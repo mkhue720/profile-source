@@ -23,13 +23,5 @@
     "mongodb": "^6.3.0",
     "mongoose": "^8.1.1",
     "react-dom": "^18.2.0"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.23.9",
-    "@babel/node": "^7.23.9",
-    "@babel/plugin-transform-react-jsx-development": "^7.22.5",
-    "@babel/preset-env": "^7.23.9",
-    "@babel/preset-react": "^7.23.3",
-    "babel-cli": "^6.26.0"
   }
 }

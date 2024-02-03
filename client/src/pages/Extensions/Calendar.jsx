@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react'
 import { Helmet } from 'react-helmet'
-import 'remixicon/fonts/remixicon.css'
-import './extensions.css'
+import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
+import './extension.css'
 
 const Calendar = () => {
     const currentDateRef = useRef(null);
@@ -57,15 +57,16 @@ const Calendar = () => {
       <Helmet>
         <title>Calendar App | NMK</title>
       </Helmet>
-      <div className="wrapper">
+      <div className="calendar__container">
+        <div className="canlendar__wrapper">
         <header>
           <p ref={currentDateRef} className="current-date" />
           <div className="icons">
             <span id="prev" className="material-symbols-rounded" onClick={() => handleIconClick("prev")}>
-            <i className="ri-arrow-drop-left-line"></i>
+            <BiChevronLeft />
             </span>
             <span id="next" className="material-symbols-rounded" onClick={() => handleIconClick("next")}>
-            <i className="ri-arrow-drop-right-line"></i>
+            <BiChevronRight />
             </span>
           </div>
         </header>
@@ -81,6 +82,7 @@ const Calendar = () => {
           </ul>
           <ul ref={daysTagRef} className="days" />
         </div>
+      </div>
       </div>
     </>
   )
