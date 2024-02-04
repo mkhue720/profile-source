@@ -78,26 +78,6 @@ To run this project, you will need to add the following environment variables to
 `JWT_SECRET_KEY`
 
 
-## Documentation
-
-[Vitejs](https://vitejs.dev/),
-[Babel](https://babeljs.io/docs/),
-[JWT](https://jwt.io/),
-[Nodejs](https://nodejs.org/docs/latest/api/),
-[EmailJS](https://www.emailjs.com/docs/),
-[Github API](https://docs.github.com/en/rest?apiVersion=2022-11-28)
-
-
-## License
-
-[MIT](https://github.com/mkhue720/profile-source/blob/main/LICENSE)
-
-
-## Support
-
-For support, email mkhue720@gmail.com .
-
-
 ## API Reference
 
 http://localhost:3000/api/v1
@@ -183,4 +163,24 @@ http://localhost:3000/api/v1
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
 | `id`      | `string` | **Required**. Id of blog to fetch |
+
+
+## Documentation
+
+[Vitejs](https://vitejs.dev/),
+[Babel](https://babeljs.io/docs/),
+[JWT](https://jwt.io/),
+[Nodejs](https://nodejs.org/docs/latest/api/),
+[EmailJS](https://www.emailjs.com/docs/),
+[Github API](https://docs.github.com/en/rest?apiVersion=2022-11-28)
+
+
+## License
+
+[MIT](https://github.com/mkhue720/profile-source/blob/main/LICENSE)
+
+
+## Support
+
+For support, email mkhue720@gmail.com .
 
