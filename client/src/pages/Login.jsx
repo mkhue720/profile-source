@@ -7,7 +7,8 @@ import HashLoader from 'react-spinners/HashLoader.js'
 const Login = () => {
   const [formData, setFormData] = useState({
     email:'',
-    password:''
+    password:'',
+    
   })
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
@@ -41,7 +42,9 @@ const Login = () => {
       console.log(result, 'login data')
       setLoading(false)
       toast.success(result.message)
-      navigate('/admin/dashboard')
+      if (result.role === 'admin') {
+        navigate('/admin/dashboard');
+      }
     } catch (err) {
       toast.error(err.message)
       setLoading(false)

@@ -8,6 +8,7 @@ const UserSchema = new mongoose.Schema({
     type: String,
     enum: ["admin"],
   },
+  appointments: [{ type: mongoose.Types.ObjectId, ref: "Appointment" }],
 });
 
 export default mongoose.model("User", UserSchema);

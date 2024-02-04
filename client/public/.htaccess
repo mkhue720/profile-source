@@ -1,5 +1,0 @@
-RewriteEngine On
-
-RewriteCond %{REQUEST_URI} !\.(css|js|png|jpg|gif)$
-RewriteCond %{REQUEST_URI} !^/index.html$
-RewriteRule ^(.*)$ /index.html [L,QSA]

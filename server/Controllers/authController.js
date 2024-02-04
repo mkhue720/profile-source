@@ -7,7 +7,7 @@ const generateToken = user => {
     })
 }
 export const register = async(req,res) => {
-    const {email, password, name, role} = req.body
+    const {email, password, name, role, photo, gender} = req.body
     try {
         let user = null
         if(role === 'admin'){
@@ -25,6 +25,7 @@ export const register = async(req,res) => {
                 name, 
                 email,
                 password:hashPassword,
+                role,
             })
         }
         await user.save()
