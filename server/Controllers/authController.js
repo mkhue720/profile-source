@@ -1,4 +1,4 @@
-import User from '../models//UserSchema.js'
+import User from '../models/UserSchema.js'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
 const generateToken = user => {
@@ -53,7 +53,7 @@ export const login = async(req,res) => {
         }
         //get token
         const token = generateToken(user)
-        const {password, role, appoiments, ...rest} = user._doc
+        const {password, role, ...rest} = user._doc
         res.status(200).json({status:true, message: "Successfully login.", token, data:{...rest}, role})
     } catch (err) {
         res.status(500).json({status:false, message: "Failed to login."})
