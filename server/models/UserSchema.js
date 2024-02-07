@@ -6,7 +6,8 @@ const UserSchema = new mongoose.Schema({
   name: { type: String, required: true },
   role: {
     type: String,
-    enum: ["admin"],
+    enum: ["admin", "user"],
+    default: "user",
   },
   appointments: [{ type: mongoose.Types.ObjectId, ref: "Appointment" }],
 });

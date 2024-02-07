@@ -6,6 +6,7 @@ const BlogSchema = new mongoose.Schema({
   author: { type: String, required: true },
   image: { type: String, required: true },
   content: { type: String, required: true },
+  tags: { type: Array, required: true },
   createAt: {
     type: Date,
     default: () => moment().tz('Asia/Ho_Chi_Minh').toDate('DD/MM/YYYY'),

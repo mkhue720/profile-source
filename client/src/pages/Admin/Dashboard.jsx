@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { Link, useNavigate } from 'react-router-dom';
-import { BASE_URL } from '../config.js';
+import { BASE_URL } from '../../config.js';
 import 'boxicons/css/boxicons.min.css';
 
 const Dashboard = () => {
@@ -59,6 +59,9 @@ const Dashboard = () => {
         <Link to="/admin/addblog" className="btn ml-[50px]">
           Add Blog
         </Link>
+        <Link to="/admin/users" className="btn ml-[50px]">
+          Users
+        </Link>
       </div>
       <div className='repo-container mt-10 mr-auto'>
         {error ? (
@@ -66,9 +69,11 @@ const Dashboard = () => {
         ) : blogs.length > 0 ? (
           blogs.map((blog) => (
             <div key={blog._id} className="introduce flex items-center gap-2">
+              <div className="flex items-center">
+              {blog.image && <img src={blog.image} alt={blog.title} className='w-[100px] h-[100px] mr-[30px]' />}
               <h3>Title: {blog.title}</h3>
+              </div>
               <p>Author: {blog.author}</p>
-              {blog.image && <img src={blog.image} alt={blog.title} className='w-[100px] h-[100px]' />}
               <span>
                 <i className='bx bx-edit-alt mr-10' onClick={() => handleEditClick(blog._id)}>Edit</i>
                 <i className='bx bxs-trash mr-10' onClick={() => handleDeleteClick(blog._id)}>Delete</i>

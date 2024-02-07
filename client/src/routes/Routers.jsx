@@ -11,11 +11,13 @@ import Weather from '../pages/Extensions/Weather';
 import Calendar from '../pages/Extensions/Calendar';
 import Translator from '../pages/Extensions/Translator';
 import ImgToLink from '../pages/Extensions/ImgtoLink';
+import Register from '../pages/Register';
 import Login from '../pages/Login';
-import Dashboard from '../pages/Dashboard';
+import Dashboard from '../pages/Admin/Dashboard';
 import AddBlog from '../pages/Blog/AddBlog';
 import EditBlog from '../pages/Blog/EditBlog';
 import NotFound from '../pages/NotFound';
+import User from '../pages/Admin/User';
 
 const Routers = () => {
   return (
@@ -32,7 +34,8 @@ const Routers = () => {
         <Route path='/extensions/calendar' element={<Calendar />} />
         <Route path='/extensions/translator' element={<Translator />} />
         <Route path='/extensions/imgtolink' element={<ImgToLink />} />
-        <Route path='/admin/login' element={<Login />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
         <Route path='*' element={<NotFound />} />
         <Route path="/admin/dashboard" element={
           <PrivateRoute allowedRoles={['admin']} >
@@ -52,6 +55,11 @@ const Routers = () => {
         <Route path="/admin/dashboard/:blogId" element={
           <PrivateRoute allowedRoles={['admin']} >
             <Dashboard />
+          </PrivateRoute>
+        } />
+      <Route path="/admin/users" element={
+          <PrivateRoute allowedRoles={['admin']} >
+            <User />
           </PrivateRoute>
         } />
       </Routes>

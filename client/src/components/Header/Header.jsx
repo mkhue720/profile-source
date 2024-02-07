@@ -1,10 +1,9 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useContext } from 'react';
 import logo from '../../assets/img/logo.png';
-import { NavLink } from 'react-router-dom';
-import { RiHome2Line, RiArticleLine, RiBriefcaseLine, RiPhoneFill } from 'react-icons/ri';
+import { Link, NavLink } from 'react-router-dom';
+import { RiHome2Line, RiArticleLine, RiBriefcaseLine, RiPhoneFill, RiUser3Fill, RiLogoutBoxLine } from 'react-icons/ri';
 import { BiMenu, BiExtension } from 'react-icons/bi';
-import '../../App.css'
-
+import { authContext } from '../../context/AuthContext';
 const navLinks = [
   {
     path: '/home',
@@ -36,6 +35,8 @@ const navLinks = [
 const Header = () => {
   const headerRef = useRef(null)
   const menuRef =  useRef(null)
+  const {user, role, token} = useContext(authContext)
+  const {dispatch} = useContext(authContext)
   const handleStickyHeader = () => {
     window.addEventListener ('scroll', () => {
       if(document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
@@ -49,17 +50,19 @@ const Header = () => {
     handleStickyHeader()
     return () => window.removeEventListener('scroll', handleStickyHeader)
   })
+  const handleLogout = () => {
+    dispatch({type: 'LOGOUT'})
+  }
   const toggleMenu = () => menuRef.current.classList.toggle('show__menu')
-  return (
-    <header className='header flex items-center' ref={headerRef}>
-      <div className="container">
-        <div className='flex items-center justify-between'>
-              {/* LOGO */}
-          <div>
-            <a href="/"><img src={logo} alt="logo" /></a>
-          </div>
-              {/* MENU */}
-          <div className='navigation' ref={menuRef} onClick={toggleMenu}>
+  return <header className='header flex items-center' ref={headerRef}>
+    <div className="container">
+      <div className='flex items-center justify-between'>
+            {/* LOGO */}
+        <div>
+          <img src={logo} alt="logo" />
+        </div>
+            {/* MENU */}
+            <div className='navigation' ref={menuRef} onClick={toggleMenu}>
             <ul className="menu flex items-center gap-[2.7rem]">
               {
                 navLinks.map((link,index) => <li key = {index} className='block'>
@@ -74,19 +77,38 @@ const Header = () => {
                   </NavLink>
                 </li>)
               }
+              {
+                token && user ? (
+                  <NavLink  onClick={handleLogout} className={navClass => navClass.isActive 
+                    ? 'text-primaryColor text-[16px] leading-7 font-semibold '
+                    :'text-whiteColor text-[16px] leading-7 font-semibold hover:text-primaryColor '}>
+                      <div className="flex items-center gap-2">
+                        <span><RiLogoutBoxLine /></span>
+                        <span>Logout</span>
+                      </div>
+                  </NavLink>
+                ) : (
+                  <NavLink to='/login' className={navClass => navClass.isActive 
+                    ? 'text-primaryColor text-[16px] leading-7 font-semibold '
+                    :'text-whiteColor text-[16px] leading-7 font-semibold hover:text-primaryColor '}>
+                      <div className="flex items-center gap-2">
+                        <span><RiUser3Fill /></span>
+                        <span>Login</span>
+                      </div>
+                  </NavLink>
+                )
+              }
             </ul>
           </div>
-                {/* NAV */}
-          <div className='flex items-center gap-4'>
-            
+              {/* NAV */}
+            <div className='flex items-center gap-4'> 
               <span className='md:hidden' onClick={toggleMenu}>
                 <BiMenu className = 'w-6 h-6 cursor-pointer' />
               </span>
-          </div>
+            </div>     
         </div>
-      </div>
-    </header>
-  )
+    </div>
+  </header>
 }
 
 export default Header

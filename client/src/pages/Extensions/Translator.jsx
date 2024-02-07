@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
-import './extension.css';
+import './extensions.css';
 import { BiSolidVolumeFull, BiCopy, BiTransfer  } from "react-icons/bi";
 
 const Translator = () => {

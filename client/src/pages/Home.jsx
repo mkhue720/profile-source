@@ -3,7 +3,6 @@ import 'boxicons/css/boxicons.min.css';
 import avatar from '../assets/img/avatar.png'
 import '../App.css'
 import { Helmet } from 'react-helmet';
-import CV from '../assets/CV.pdf'
 
 const Home = () => {
 
@@ -40,9 +39,9 @@ const Home = () => {
         </div>
         <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, porro facere. Quae maiores praesentium temporibus voluptatibus nemo magnam incidunt dolores, ratione reprehenderit similique tenetur expedita corrupti error hic ipsa consequatur blanditiis iusto voluptatem mollitia. Ex aliquam ea deleniti. Non aperiam eveniet enim deleniti laborum placeat ea, voluptate incidunt nobis, distinctio repellat ducimus autem.</h3>
         <a 
-          href={CV}
-          download="CV NMK"
-          target='_blank'
+          href='https://drive.usercontent.google.com/download?id=17pg9hmANmFM5YUhohMHisCgiYSWD8aNt&export=download&authuser=0'
+          download='CV.pdf'
+          type='application/pdf'
           rel='noopener noreferrer' >
           <button className='btn '><span><i className='bx bxs-download' ></i></span> Download My CV</button>
         </a>

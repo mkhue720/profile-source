@@ -8,7 +8,6 @@ const Login = () => {
   const [formData, setFormData] = useState({
     email:'',
     password:'',
-    
   })
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
@@ -45,6 +44,9 @@ const Login = () => {
       if (result.role === 'admin') {
         navigate('/admin/dashboard');
       }
+      if (result.role === 'user') {
+        navigate('/home');
+      }
     } catch (err) {
       toast.error(err.message)
       setLoading(false)
@@ -67,6 +69,9 @@ const Login = () => {
             <button type="submit" className="w-full bg-primaryColor text-white text-[18px] leading-[30px] rounded-lg px-4 py-3">
               {loading ? <HashLoader size={25} color='#fff' /> : 'Login'}
             </button>
+            <p className="mt-5 text-center">
+            Don&apos;t have an account? <Link to='/register' className="text-primaryColor font-medium ml-1">Signup</Link>
+          </p>
           </div>
         </form>
       </div>

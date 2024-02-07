@@ -28,6 +28,14 @@ export const register = async(req,res) => {
                 role,
             })
         }
+        if(role==='user'){
+            user = new User ({
+                name, 
+                email,
+                password:hashPassword,
+                role,
+            })
+        }
         await user.save()
         res.status(200).json({success:true, message:'User Success Create'})
     } catch (err) {

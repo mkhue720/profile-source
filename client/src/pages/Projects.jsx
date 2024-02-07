@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import 'boxicons/css/boxicons.min.css';
 import { Helmet } from 'react-helmet';
+import HashLoader from 'react-spinners/HashLoader.js';
 
 const Projects = () => {
   const [repos, setRepos] = useState([]);
@@ -27,7 +28,11 @@ const Projects = () => {
   }, []);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return (
+      <div className="flex justify-center align-middle h-[100vh]">
+        <HashLoader />
+      </div>
+    );
   }
 
   if (error) {

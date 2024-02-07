@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react'
 import { Helmet } from 'react-helmet'
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
-import './extension.css'
+import './extensions.css'
 
 const Calendar = () => {
     const currentDateRef = useRef(null);

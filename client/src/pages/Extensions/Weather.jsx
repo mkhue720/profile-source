@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Helmet from 'react-helmet';
-import './extension.css';
+import './extensions.css';
 
 const Weather = () => {
   useEffect(() => {

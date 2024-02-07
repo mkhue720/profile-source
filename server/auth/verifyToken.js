@@ -22,15 +22,27 @@ export const authenticate = async (req, res, next) => {
         return res.status(401).json({success:false, message:'Invalid token'})
     }
 }
-export const restrict = roles => async(req, res, next) => {
-    const userId = req.userId
-    let user
-    const admin = await User.findById(userId)
-    if(patient) {
-        user = patient
+export const restrict = roles => async (req, res, next) => {
+    const userId = req.userId;
+    let user;
+
+    try {
+        const admin = await User.findById(userId);
+
+        if (admin) {
+            user = admin;
+        } else {
+            // Nếu không tìm thấy user, có thể bạn muốn xử lý tùy thuộc vào logic của bạn
+            return res.status(401).json({ success: false, message: 'User not found' });
+        }
+
+        if (!roles.includes(user.role)) {
+            return res.status(401).json({ success: false, message: 'You are not authorized' });
+        }
+
+        next();
+    } catch (err) {
+        // Xử lý lỗi nếu có
+        return res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
-    if(!roles.includes(user.role)) {
-        return res.status(401).json({success:false, message:'You are not authorized'})
-    }
-    next()
-} 
+};

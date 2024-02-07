@@ -4,6 +4,8 @@ import { BASE_URL } from '../../config.js';
 import uploadImageToCloudinary from '../../untils/uploadCloudinary.js';
 import { Helmet } from 'react-helmet';
 import { Editor } from '@tinymce/tinymce-react';
+import Chip from '@mui/material/Chip';
+import TextField from '@mui/material/TextField';
 
 const EditBlog = () => {
   const navigate = useNavigate();
@@ -13,7 +15,9 @@ const EditBlog = () => {
     author: '',
     image: '',
     content: '',
-    updateAt: ''
+    updateAt: '',
+    tags: [],
+    newTag: '',
   });
 
   useEffect(() => {
@@ -48,10 +52,13 @@ const EditBlog = () => {
     const data = await uploadImageToCloudinary(file);
     setBlog({ ...blog, image: data.url });
   };
+  const handleImageURLChange = (e) => {
+    setBlog({ ...blog, image: e.target.value });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    const validTags = blog.tags.filter((tag) => tag.trim() !== '');
     try {
       const response = await fetch(`${BASE_URL}/blogs/${blogId}`, {
         method: 'PUT',
@@ -73,6 +80,23 @@ const EditBlog = () => {
     }
     navigate('/admin/dashboard');
   };
+  const handleTagInputChange = (e) => {
+    setBlog({ ...blog, newTag: e.target.value });
+  };
+  const handleAddTag = () => {
+    if (blog.newTag.trim() !== '') {
+      setBlog({
+        ...blog,
+        tags: [...blog.tags, blog.newTag.trim()],
+        newTag: '',
+      });
+    }
+  };
+
+  const handleRemoveTag = (tagToRemove) => {
+    const updatedTags = blog.tags.filter((tag) => tag !== tagToRemove);
+    setBlog({ ...blog, tags: updatedTags });
+  };
 
   return (
     <>
@@ -80,24 +104,27 @@ const EditBlog = () => {
         <title>Edit Blog {blog.title} | NMK</title>
       </Helmet>
     <form onSubmit={handleSubmit} className='w-[90%] mx-auto my-5 p-5 rounded-[5px]'>
-      <label htmlFor="title" className='form__label' >Title:</label>
-      <input
-        type="text"
-        id="title"
-        name="title"
-        value={blog.title}
-        onChange={handleInputChange}
-      />
+    <label className='form__label' htmlFor="title">Tiêu Đề:</label>
+        <input
+          className='w-full box-border mb-[15px] p-2.5'
+          type="text"
+          id="title"
+          name="title"
+          value={blog.title}
+          required
+          onChange={handleInputChange}
+        />
 
-      <label htmlFor="author" className='form__label'>Author:</label>
-      <input
-        className='w-full box-border mb-[15px] p-2.5'
-        type="text"
-        id="author"
-        name="author"
-        value={blog.author}
-        onChange={handleInputChange}
-      />
+        <label className='form__label' htmlFor="author">Tác Giả:</label>
+        <input
+          className='w-full box-border mb-[15px] p-2.5'
+          type="text"
+          id="author"
+          name="author"
+          value={blog.author}
+          required
+          onChange={handleInputChange}
+        />
 
       <label htmlFor="image" className='form__label'>Image:</label>
       <input
@@ -107,6 +134,15 @@ const EditBlog = () => {
         name="image"
         accept='.jpg, .png,'
         onChange={handleFileChange}
+      />
+      <label className='form__label' htmlFor="image">Ảnh từ URL:</label>
+      <input
+        className='w-full box-border mb-[15px] p-2.5'
+        type="text"
+        id="imageUrl"
+        name="imageUrl"
+        placeholder="Nhập URL ảnh"
+        onChange={handleImageURLChange}
       />
 
       <label htmlFor="content" className='form__label'>Content:</label>
@@ -125,6 +161,29 @@ const EditBlog = () => {
             ],
             ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
           }}
+        />
+
+        <label className='form__label' htmlFor="tags">Tags:</label>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+          {blog.tags.map((tag, index) => (
+            <Chip
+              key={index}
+              label={tag}
+              onDelete={() => handleRemoveTag(tag)}
+              color="primary"
+              style={{ margin: '4px' }}
+            />
+          ))}
+        </div>
+
+        <TextField
+          className='w-full box-border mb-[15px] p-2.5 bg-white'
+          label="Thêm tags mới"
+          variant="outlined"
+          value={blog.newTag}
+          onChange={handleTagInputChange}
+          onKeyPress={(e) => e.key === ',' && handleAddTag()}
+          style={{ marginTop: '10px' }}
         />
 
       <button className='btn' type="submit" value={blog.updateAt}>Save Changes</button>
