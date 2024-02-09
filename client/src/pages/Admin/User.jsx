@@ -166,6 +166,12 @@ const User = () => {
                         value={editedUserInfo.email}
                         onChange={(e) => setEditedUserInfo({ ...editedUserInfo, email: e.target.value })}
                     />
+                    <label>Avatar:</label>
+                    <input className='text-black'
+                        type="text"
+                        value={editedUserInfo.img}
+                        onChange={(e) => setEditedUserInfo({ ...editedUserInfo, img: e.target.value })}
+                    />
                     <label>Role:</label>
                     <input className='text-black'
                         type="text"

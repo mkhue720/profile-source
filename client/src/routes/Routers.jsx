@@ -6,11 +6,6 @@ import Blog from '../pages/Blog/Blog';
 import BlogDetails from '../pages/Blog/BlogDetails';
 import Contact from '../pages/Contact';
 import Projects from '../pages/Projects';
-import Extensions from '../pages/Extensions/Extensions';
-import Weather from '../pages/Extensions/Weather';
-import Calendar from '../pages/Extensions/Calendar';
-import Translator from '../pages/Extensions/Translator';
-import ImgToLink from '../pages/Extensions/ImgtoLink';
 import Register from '../pages/Register';
 import Login from '../pages/Login';
 import Dashboard from '../pages/Admin/Dashboard';
@@ -18,6 +13,7 @@ import AddBlog from '../pages/Blog/AddBlog';
 import EditBlog from '../pages/Blog/EditBlog';
 import NotFound from '../pages/NotFound';
 import User from '../pages/Admin/User';
+// import Profile from '../pages/User/Profile';
 
 const Routers = () => {
   return (
@@ -29,14 +25,10 @@ const Routers = () => {
         <Route path='/blog/:id' element={<BlogDetails />} />
         <Route path='/contact' element={<Contact />} />
         <Route path='/projects' element={<Projects />} />
-        <Route path='/extensions' element={<Extensions />} />
-        <Route path='/extensions/weather' element={<Weather />} />
-        <Route path='/extensions/calendar' element={<Calendar />} />
-        <Route path='/extensions/translator' element={<Translator />} />
-        <Route path='/extensions/imgtolink' element={<ImgToLink />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
         <Route path='*' element={<NotFound />} />
+        {/* <Route path="/profile" element={<Profile />} /> */}
         <Route path="/admin/dashboard" element={
           <PrivateRoute allowedRoles={['admin']} >
             <Dashboard />

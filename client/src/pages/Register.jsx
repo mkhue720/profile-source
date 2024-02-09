@@ -10,6 +10,7 @@ const Register = () => {
     email:'',
     password:'',
     role:'user',
+    photo: 'https://i.imgur.com/TsP29wm.png',
   })
   const navigate = useNavigate()
   const handleInputChange = e => {

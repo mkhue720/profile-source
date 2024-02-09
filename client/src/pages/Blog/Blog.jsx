@@ -18,7 +18,8 @@ const Blog = () => {
         if (!response.ok) {
           throw new Error(data.message);
         }
-        setBlogs(data.data);
+        const sortedBlogs = data.data.sort((a, b) => new Date(b.createAt) - new Date(a.createAt));
+        setBlogs(sortedBlogs);
       } catch (error) {
         console.error('Failed to fetch blogs:', error);
         setError('Failed to fetch blogs. Please try again later.');

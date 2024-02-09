@@ -7,7 +7,7 @@ import { BASE_URL } from '../../config.js';
 import { Link, useNavigate } from 'react-router-dom';
 import { HashLoader } from 'react-spinners';
 import { toast } from 'react-toastify';
-import uploadImageToCloudinary from '../../untils/uploadCloudinary.js';
+import uploadImageToCloudinary from '../../utils/uploadCloudinary.js';
 
 const AddBlog = () => {
   const [formData, setFormData] = useState({

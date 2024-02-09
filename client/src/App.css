@@ -158,17 +158,6 @@ body {
   @apply block;
 }
 
-.extensions__container {
-  @apply flex justify-between;
-}
-
-.extensions {
-  @apply flex flex-col items-center gap-6 w-full md:w-[20%] shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-1px_rgba(0,0,0,0.06)] bg-[#fff] mx-auto my-6 p-8 rounded-2xl;
-}
-.dark .extensions {
-  @apply bg-[#000];
-}
-
 .table-container {
   @apply m-5;
 }
@@ -189,3 +178,4 @@ tr:hover {
 .dark tr:hover {
   @apply bg-neutral-800;
 }
+

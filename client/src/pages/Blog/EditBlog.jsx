@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { BASE_URL } from '../../config.js';
-import uploadImageToCloudinary from '../../untils/uploadCloudinary.js';
+import uploadImageToCloudinary from '../../utils/uploadCloudinary.js';
 import { Helmet } from 'react-helmet';
 import { Editor } from '@tinymce/tinymce-react';
 import Chip from '@mui/material/Chip';

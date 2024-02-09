@@ -3,11 +3,11 @@ import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
 const generateToken = user => {
     return jwt.sign({id:user._id, role:user.role}, process.env.JWT_SECRET_KEY, {
-        expiresIn: "15d"
+        expiresIn: "365d"
     })
 }
 export const register = async(req,res) => {
-    const {email, password, name, role, photo, gender} = req.body
+    const {email, password, name, role, photo} = req.body
     try {
         let user = null
         if(role === 'admin'){
@@ -26,6 +26,7 @@ export const register = async(req,res) => {
                 email,
                 password:hashPassword,
                 role,
+                photo,
             })
         }
         if(role==='user'){
@@ -34,6 +35,7 @@ export const register = async(req,res) => {
                 email,
                 password:hashPassword,
                 role,
+                photo,
             })
         }
         await user.save()
