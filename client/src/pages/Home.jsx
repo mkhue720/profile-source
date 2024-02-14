@@ -2,16 +2,18 @@ import React from 'react'
 import 'boxicons/css/boxicons.min.css';
 import avatar from '../assets/img/avatar.png'
 import '../App.css'
-import { Helmet } from 'react-helmet';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 const Home = () => {
 
   return (
     <>
+    <HelmetProvider>
     <Helmet>
       <title>Home | NMK</title>
       <meta name="description" content="Ngô Minh Khuê" />
     </Helmet>
+    </HelmetProvider>
     <div className="block w-full opacity-1 transform: translate-y-0">
       <div className="profile__data">      
         <div className="profile__perfil">

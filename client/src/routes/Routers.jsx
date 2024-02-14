@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import PrivateRoute from '../components/PrivateRoute';
+import PrivateRoute from './PrivateRoute';
 import { AuthContextProvider } from '../context/AuthContext';
 import Home from '../pages/Home';
 import Blog from '../pages/Blog/Blog';
@@ -13,7 +13,9 @@ import AddBlog from '../pages/Blog/AddBlog';
 import EditBlog from '../pages/Blog/EditBlog';
 import NotFound from '../pages/NotFound';
 import User from '../pages/Admin/User';
-// import Profile from '../pages/User/Profile';
+import Profile from '../pages/User/Profile';
+import ForgotPassword from '../pages/ForgotPassword';
+import ResetPassword from '../pages/ResetPassword';
 
 const Routers = () => {
   return (
@@ -27,8 +29,10 @@ const Routers = () => {
         <Route path='/projects' element={<Projects />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
+        <Route path='/forgotpassword' element={<ForgotPassword />} />
+        <Route path='/resetpassword/:id/:token' element={<ResetPassword />} />
         <Route path='*' element={<NotFound />} />
-        {/* <Route path="/profile" element={<Profile />} /> */}
+        <Route path="/profile" element={<Profile />} />
         <Route path="/admin/dashboard" element={
           <PrivateRoute allowedRoles={['admin']} >
             <Dashboard />

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { BASE_URL, authToken } from '../../config.js';
+import { BASE_URL, token } from '../../config.js';
 import HashLoader from 'react-spinners/HashLoader.js';
-import { Helmet } from 'react-helmet';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import axios from 'axios';
 import { BiEdit, BiSolidTrash  } from "react-icons/bi";
 
@@ -21,7 +21,7 @@ const User = () => {
             try {
                 const response = await axios.get(`${BASE_URL}/users/`, {
                     headers: {
-                        'Authorization': `Bearer ${authToken}`, 
+                        'Authorization': `Bearer ${token}`, 
                     },
                 });
 
@@ -57,7 +57,7 @@ const User = () => {
                 editedUserInfo,
                 {
                     headers: {
-                        'Authorization': `Bearer ${authToken}`,
+                        'Authorization': `Bearer ${token}`,
                     },
                 }
             );
@@ -93,7 +93,7 @@ const User = () => {
                 `${BASE_URL}/users/${userId}`,
                 {
                     headers: {
-                        'Authorization': `Bearer ${authToken}`,
+                        'Authorization': `Bearer ${token}`,
                     },
                 }
             );
@@ -125,9 +125,11 @@ const User = () => {
 
     return (
         <>
+            <HelmetProvider>
             <Helmet>
                 <title>Users | NMK</title>
             </Helmet>
+            </HelmetProvider>
             <div className="table-container w-[80%] overflow-x-auto">
                 <table className='w-[100%] border-collapse mt-[20px]'>
                     <thead>
@@ -136,6 +138,8 @@ const User = () => {
                             <th>Name</th>
                             <th>Email</th>
                             <th>Role</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>

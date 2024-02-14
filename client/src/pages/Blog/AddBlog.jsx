@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Chip from '@mui/material/Chip';
 import TextField from '@mui/material/TextField';
 import { Editor } from '@tinymce/tinymce-react';
-import { Helmet } from 'react-helmet';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { BASE_URL } from '../../config.js';
 import { Link, useNavigate } from 'react-router-dom';
 import { HashLoader } from 'react-spinners';
@@ -86,10 +86,12 @@ const AddBlog = () => {
 
   return (
     <>
+    <HelmetProvider>
       <Helmet>
         <title>Thêm Bài Viết | NMK</title>
         <meta name="keywords" content={formData.tags.join(',')} />
       </Helmet>
+    </HelmetProvider>
       <form className='w-[90%] mx-auto my-5 p-5 rounded-[5px]'>
       <label className='form__label' htmlFor="title">Tiêu Đề:</label>
         <input

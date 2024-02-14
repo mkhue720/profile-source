@@ -179,3 +179,11 @@ tr:hover {
   @apply bg-neutral-800;
 }
 
+.separator {
+  @apply h-px w-full flex items-center justify-center mx-0 my-[25px] before:content-["or"] before:text-[#6C757D] before:text-[1.18rem] before:-mt-1 before:px-[15px] before:py-0;
+  background: #bbbbbb;
+}
+.separator::before {
+  background: #e3f2fd;
+}
+

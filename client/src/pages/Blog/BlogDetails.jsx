@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { BASE_URL } from '../../config.js';
 
 const BlogDetails = () => {
@@ -27,10 +27,12 @@ const BlogDetails = () => {
 
     return (
         <>
+        <HelmetProvider>
             <Helmet>
                 <title>{blog.title || 'Loading...'} | NMK</title>
                 <meta name="description" content="Ngô Minh Khuê" />
             </Helmet>
+        </HelmetProvider>
             <div className='blog-details'>
                 {error ? (
                     <p>{error}</p>

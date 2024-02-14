@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { BASE_URL } from '../../config.js';
 import uploadImageToCloudinary from '../../utils/uploadCloudinary.js';
-import { Helmet } from 'react-helmet';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { Editor } from '@tinymce/tinymce-react';
 import Chip from '@mui/material/Chip';
 import TextField from '@mui/material/TextField';
@@ -100,9 +100,11 @@ const EditBlog = () => {
 
   return (
     <>
+    <HelmetProvider>
       <Helmet>
         <title>Edit Blog {blog.title} | NMK</title>
       </Helmet>
+    </HelmetProvider>
     <form onSubmit={handleSubmit} className='w-[90%] mx-auto my-5 p-5 rounded-[5px]'>
     <label className='form__label' htmlFor="title">Tiêu Đề:</label>
         <input
@@ -110,7 +112,7 @@ const EditBlog = () => {
           type="text"
           id="title"
           name="title"
-          value={blog.title}
+          value={blog.title || ''}
           required
           onChange={handleInputChange}
         />
@@ -121,7 +123,7 @@ const EditBlog = () => {
           type="text"
           id="author"
           name="author"
-          value={blog.author}
+          value={blog.author || ''}
           required
           onChange={handleInputChange}
         />
@@ -180,7 +182,7 @@ const EditBlog = () => {
           className='w-full box-border mb-[15px] p-2.5 bg-white'
           label="Thêm tags mới"
           variant="outlined"
-          value={blog.newTag}
+          value={blog.newTag || ''}
           onChange={handleTagInputChange}
           onKeyPress={(e) => e.key === ',' && handleAddTag()}
           style={{ marginTop: '10px' }}

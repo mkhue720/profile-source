@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { BASE_URL } from '../../config.js';
 import 'boxicons/css/boxicons.min.css';
 import HashLoader from 'react-spinners/HashLoader.js'
+import Loading from '../../components/Loader/Loading.jsx';
 
 const Blog = () => {
   const [blogs, setBlogs] = useState([]);
@@ -45,9 +46,11 @@ const Blog = () => {
   
   return (
     <>
+    <HelmetProvider>
       <Helmet>
-        <title>Home | NMK</title>
+        <title>Blog | NMK</title>
       </Helmet>
+    </HelmetProvider>
       <div className='repo-container mt-10 mr-auto'>
         {error ? (
           <p>{error}</p>

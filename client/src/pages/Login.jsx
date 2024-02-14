@@ -4,6 +4,7 @@ import {BASE_URL} from '../config.js'
 import {toast} from 'react-toastify'
 import { authContext } from "../context/AuthContext.jsx"
 import HashLoader from 'react-spinners/HashLoader.js'
+import { Helmet, HelmetProvider } from 'react-helmet-async'
 const Login = () => {
   const [formData, setFormData] = useState({
     email:'',
@@ -41,7 +42,6 @@ const Login = () => {
       console.log(result, 'login data')
       setLoading(false)
       toast.success(result.message)
-      window.location.reload();
       if (result.role === 'admin') {
         navigate('/admin/dashboard');
       }
@@ -52,8 +52,16 @@ const Login = () => {
       toast.error(err.message)
       setLoading(false)
     }
+    window.location.reload();
   }
   return (
+    <>
+    <HelmetProvider>
+    <Helmet>
+      <title>Login</title>
+      <meta name="description" content="Login page" />
+    </Helmet>
+    </HelmetProvider>
     <section className="px-5 lg:px-0">
       <div className="w-full max-w-[570px] mx-auto rounded-lg shadow-md md:p-10">
         <h3 className="text-primaryColor text-[22px] leading-9 font-bold mb-10">
@@ -66,6 +74,28 @@ const Login = () => {
           <div className="mb-5">
             <input type="password" placeholder="Password" name="password" value={formData.password} onChange={handleInputChange} className="w-full py-3 border-b border-solid border-[#0066ff61] focus:outline-none focus:border-b-primaryColor text-[16px] leading-7 text-headingColor placeholder:text-textColor cursor-pointer" required />
           </div>
+          <div className="flex justify-between items-center mb-6">
+                  <div className="form-group form-check">
+                    <input
+                      type="checkbox"
+                      className="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                      id="exampleCheck2"
+                    />
+                    <label
+                      className="form-check-label inline-block text-gray-800"
+                      htmlFor="exampleCheck2"
+                    >
+                      Remember me
+                    </label>
+                  </div>
+                  <a
+                    href="/forgotpassword"
+                    onClick={() => nagigateToOtp()}
+                    className="text-gray-800"
+                  >
+                    Forgot password?
+                  </a>
+                </div>
           <div className="mt-7">
             <button type="submit" className="w-full bg-primaryColor text-white text-[18px] leading-[30px] rounded-lg px-4 py-3">
               {loading ? <HashLoader size={25} color='#fff' /> : 'Login'}
@@ -77,6 +107,7 @@ const Login = () => {
         </form>
       </div>
     </section>
+    </>
   )
 }
 

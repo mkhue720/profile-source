@@ -16,7 +16,8 @@ app.get('/',(req,res) => {
         res.send('API is working')
     })
 const corsOptions = {
-        origin: true
+        origin: `${process.env.CLIENT_URL}`,
+        credentials: true,
 }
 
 //db connection

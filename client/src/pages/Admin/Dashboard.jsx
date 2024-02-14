@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { Link, useNavigate } from 'react-router-dom';
 import { BASE_URL } from '../../config.js';
 import 'boxicons/css/boxicons.min.css';
@@ -51,9 +51,11 @@ const Dashboard = () => {
 
   return (
     <>
+      <HelmetProvider>
       <Helmet>
-        <title>Home | NMK</title>
+        <title>Dashboard | NMK</title>
       </Helmet>
+      </HelmetProvider>
       <h2 className="profile__name font-bold text-center">Dashboard for Admin</h2>
       <div className="profile__container mt-10">
         <Link to="/admin/addblog" className="btn ml-[50px]">

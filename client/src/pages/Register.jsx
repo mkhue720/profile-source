@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import {BASE_URL} from '../config.js'
 import {toast} from 'react-toastify'
 import HashLoader from 'react-spinners/HashLoader'
+import { Helmet, HelmetProvider } from 'react-helmet-async'
 const Register = () => {
   const [loading, setLoading] = useState(false)
   const [formData, setFormData] = useState({
@@ -40,6 +41,12 @@ const Register = () => {
     }
   }
   return (
+    <>
+    <HelmetProvider>
+    <Helmet>
+      <title>Register</title>
+    </Helmet>
+    </HelmetProvider>
     <section className='px-5 xl:px-0'>
       <div className="w-full max-w-[570px] mx-auto rounded-lg shadow-md md:p-10">
             <h3 className=' text-[22px] leading-9 font-bold mb-10'>
@@ -66,6 +73,7 @@ const Register = () => {
             </form>
           </div>
     </section>
+    </>
   )
 }
 

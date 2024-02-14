@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import emailjs from '@emailjs/browser';
-import { Helmet } from 'react-helmet';
+import { Helmet,HelmetProvider } from 'react-helmet-async';
 ///emailjs.com
 
 const Contact = () => {
@@ -20,9 +20,11 @@ const Contact = () => {
   };
   return (
       <>
+      <HelmetProvider>
       <Helmet>
         <title>Contact | NMK</title>
       </Helmet>
+      </HelmetProvider>
       <section>
         <div className="px-4 mx-auto max-w-screen-md">
           <h2 className='heading text-center'>

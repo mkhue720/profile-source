@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import 'boxicons/css/boxicons.min.css';
-import { Helmet } from 'react-helmet';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import HashLoader from 'react-spinners/HashLoader.js';
 
 const Projects = () => {
@@ -41,9 +41,11 @@ const Projects = () => {
 
   return (
     <>
+    <HelmetProvider>
     <Helmet>
       <title>Projects | NMK</title>
     </Helmet>
+    </HelmetProvider>
     <div className='repo-container'>
       {repos.map((repo) => (
         <div key={repo.id} className="introduce flex items-center gap-2 ">
