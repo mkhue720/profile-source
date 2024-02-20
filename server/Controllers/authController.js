@@ -90,7 +90,7 @@ export const forgotPassword = async (req, res) => {
             }
         });
         const mailOptions = {
-            from: NMK,
+            from: process.env.EMAIL,
             to: email,
             subject: 'Reset Password',
             html: `
@@ -107,6 +107,10 @@ export const forgotPassword = async (req, res) => {
         });
         user.resetToken = token;
         user.expireToken = Date.now() + 300000;
+        const data = new Date();
+        const dataUTC = data.toUTCString();
+        console.log(dataUTC);
+
         await user.save();
         res.status(200).json({ message: "Check your email to reset your password." });
     }
@@ -114,6 +118,7 @@ export const forgotPassword = async (req, res) => {
         res.status(500).json({ message: "Server error." });
     }
 }
+
 export const resetPassword = async (req, res) => {
     const { id, token } = req.params;
     const { password } = req.body;

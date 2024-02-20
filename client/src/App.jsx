@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import 'boxicons/css/boxicons.min.css';
 import './App.css'
 import Layout from './layout/Layout'
 import ScrollTop from './components/ScrollToTop';
@@ -7,12 +6,10 @@ import { BiMoon, BiSun } from "react-icons/bi";
 
 function App() {
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
-
   useEffect(() => {
     document.body.className = theme;
     localStorage.setItem('theme', theme);
   }, [theme]);
-
   const toggleTheme = () => {
     setTheme((prevTheme) => prevTheme === 'light' ? 'dark' : 'light');
   };

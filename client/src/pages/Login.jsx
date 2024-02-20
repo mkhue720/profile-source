@@ -44,15 +44,16 @@ const Login = () => {
       toast.success(result.message)
       if (result.role === 'admin') {
         navigate('/admin/dashboard');
+        window.location.reload();
       }
       if (result.role === 'user') {
         navigate('/home');
+        window.location.reload();
       }
     } catch (err) {
       toast.error(err.message)
       setLoading(false)
     }
-    window.location.reload();
   }
   return (
     <>

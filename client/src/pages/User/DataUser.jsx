@@ -6,7 +6,6 @@ import useGetProfile from '../hooks/userFetchData.jsx'
 
 const DataUser = () => {
   const { data: userData, loading, error } = useGetProfile(`${BASE_URL}/users/profile/me`);
-  const { _id: userId } = userData || {};  const navigate = useNavigate()
   const [user, setUser] = useState({
     email: '',
     password: '',
@@ -19,32 +18,9 @@ const DataUser = () => {
   const handleImageURLChange = (e) => {
     setUser({ ...user, photo: e.target.value });
   };
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await fetch(`${BASE_URL}/users/${userId}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(user),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message);
-      }
-
-      navigate(`/profile`);
-    } catch (error) {
-      console.error('Failed to edit user:', error);
-    }
-    navigate('/profile');
-  };
   return (
     <>
-    <form onSubmit={handleSubmit} className='w-[90%] mx-auto my-5 p-5 rounded-[5px]'>
+    <form className='w-[90%] mx-auto my-5 p-5 rounded-[5px]'>
       <label className='form__label' htmlFor="name">Name: </label>
       <input
         className='w-full box-border mb-[15px] p-2.5 rounded-[10px]'

@@ -6,6 +6,7 @@ import dotenv from 'dotenv';
 import authRoute from './Routes/auth.js'
 import userRoute from './Routes/user.js'
 import blogRoute from './Routes/blog.js'
+import commentRoute from './Routes/comment.js'
 
 dotenv.config()
 
@@ -13,36 +14,41 @@ const app = express()
 const port = process.env.PORT || 8000
 
 app.get('/',(req,res) => {
-        res.send('API is working')
-    })
+    res.send('API is working')
+})
+
+
 const corsOptions = {
-        origin: `${process.env.CLIENT_URL}`,
-        credentials: true,
+    origin: 'http://localhost:5173',
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
 }
 
-//db connection
+// db connection
 mongoose.set('strictQuery',false)
 const connectDB = async() => {
-        try {
-                await mongoose.connect(process.env.MONGO_URL, {
-                        useNewUrlParser: true,
-                        useUnifiedTopology: true,
-                })
-                console.log('connect db')
-        } catch (err) {
-                console.log('connect db failed')
-        }
+    try {
+        await mongoose.connect(process.env.MONGO_URL, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        })
+        console.log('connect db')
+    } catch (err) {
+        console.log('connect db failed')
+    }
 }
 
 // middleware
+app.use(cors(corsOptions))
 app.use(express.json())
 app.use(cookieParser())
-app.use(cors(corsOptions))
 app.use('/api/v1/auth', authRoute)
 app.use('/api/v1/users', userRoute)
 app.use('/api/v1/blogs', blogRoute)
+app.use('/api/v1/comments', commentRoute)
 
 app.listen(port, () => {
-        connectDB();
-        console.log('Server is running on port ' + port)
+    connectDB();
+    console.log('Server is running on port ' + port)
 })

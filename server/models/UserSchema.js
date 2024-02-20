@@ -10,6 +10,7 @@ const UserSchema = new mongoose.Schema({
     enum: ["admin", "user"],
     default: "user",
   },
+  comment: [{ type: mongoose.Types.ObjectId, ref: "Comment" }],
   appointments: [{ type: mongoose.Types.ObjectId, ref: "Appointment" }],
 });
 

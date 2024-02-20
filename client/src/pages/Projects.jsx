@@ -14,7 +14,8 @@ const Projects = () => {
       .then(response => response.json())
       .then(data => {
         if (Array.isArray(data)) {
-          setRepos(data.filter(repo => !repo.fork));
+        const sortedRepos = data.filter(repo => !repo.fork).sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+        setRepos(sortedRepos);
         } else {
           setError('Failed to fetch data from GitHub');
         }

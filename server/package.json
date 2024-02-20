@@ -7,8 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
-    "start-dev": "nodemon --exec babel-node index.js",
-    "build": "babel Controllers -d lib"
+    "build": "babel index.js -d lib"
   },
   "author": "NMK",
   "license": "ISC",
@@ -26,6 +25,7 @@
     "moment-timezone": "^0.5.44",
     "mongodb": "^6.3.0",
     "mongoose": "^8.1.1",
+    "node-cron": "^3.0.3",
     "nodemailer": "^6.9.9",
     "react-dom": "^18.2.0",
     "regenerator-runtime": "^0.14.1"

@@ -16,6 +16,7 @@ import User from '../pages/Admin/User';
 import Profile from '../pages/User/Profile';
 import ForgotPassword from '../pages/ForgotPassword';
 import ResetPassword from '../pages/ResetPassword';
+import ChatBot from '../pages/ChatBot';
 
 const Routers = () => {
   return (
@@ -31,8 +32,9 @@ const Routers = () => {
         <Route path='/register' element={<Register />} />
         <Route path='/forgotpassword' element={<ForgotPassword />} />
         <Route path='/resetpassword/:id/:token' element={<ResetPassword />} />
+        <Route path='/chatbot' element={<ChatBot />} />
         <Route path='*' element={<NotFound />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile/" element={<Profile />} />
         <Route path="/admin/dashboard" element={
           <PrivateRoute allowedRoles={['admin']} >
             <Dashboard />

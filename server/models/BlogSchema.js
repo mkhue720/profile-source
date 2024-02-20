@@ -15,6 +15,7 @@ const BlogSchema = new mongoose.Schema({
     type: Date,
     default: () => moment().tz('Asia/Ho_Chi_Minh').toDate('DD/MM/YYYY'),
   },
+  comment: [{ type: mongoose.Types.ObjectId, ref: "Comment" }],
 });
 
 export default mongoose.model("Blog", BlogSchema);

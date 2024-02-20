@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import emailjs from '@emailjs/browser';
 import { Helmet,HelmetProvider } from 'react-helmet-async';
+import {toast} from 'react-toastify'
 ///emailjs.com
 
 const Contact = () => {
@@ -12,10 +13,10 @@ const Contact = () => {
     emailjs.sendForm('service_0k68lpm', 'template_7yki53q', form.current, '937jjERW1MqB7DitB')
       .then((result) => {
           console.log(result.text);
-          alert('Your message has been sent successfully. I will contact you soon. Thank you!')
+          toast.success('Your message has been sent successfully. I will contact you soon. Thank you!')
       }, (error) => {
           console.log(error.text);
-          alert('Your message has not been sent. Please try again!')
+          toast.error('Your message has not been sent. Please try again!')
       });
   };
   return (

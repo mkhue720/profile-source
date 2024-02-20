@@ -55,8 +55,14 @@ body {
 .theme-toggle button:focus {
   @apply outline-none;
 }
+.popup {
+  @apply absolute top-full right-0 mt-2 py-2 w-48 bg-white rounded-lg shadow-xl z-50
+}
+.unread-button {
+  @apply w-2.5 h-2.5 bg-[blue] inline-block mr-[5px] rounded-[50%];
+}
 .header {
-  background: #00000084;
+  background: #363b4b84;
 }
 @media only screen and (max-width: 768px) {
   .navigation {
@@ -96,7 +102,11 @@ body {
 }
 
 .introduce {
-  @apply flex flex-col items-center gap-6 w-4/5 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-1px_rgba(0,0,0,0.06)] bg-[#62a0c6] mx-auto my-6 p-8 rounded-2xl;
+  @apply flex flex-col items-center gap-6 w-4/5 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-1px_rgba(0,0,0,0.06)] bg-[#b1b8bd] mx-auto my-6 p-8 rounded-2xl;
+}
+
+.dark .introduce {
+  @apply bg-[#1A1A1A] 
 }
 
 .repo-container {
@@ -118,13 +128,16 @@ body {
   @apply border-t-white border-t border-solid;
 }
 
-
-.skills-container {
+.skills__container {
   @apply flex justify-between;
 }
 
 .skills {
-  @apply flex flex-col items-center gap-6 w-[80%] md:w-[30%] shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-1px_rgba(0,0,0,0.06)] bg-[#62a0c6] mx-auto my-6 p-8 rounded-2xl;
+  @apply flex flex-col items-center gap-6 w-[80%] md:w-[30%] shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-1px_rgba(0,0,0,0.06)] bg-[#b1b8bd] mx-auto my-6 p-8 rounded-2xl;
+}
+
+.dark .skills {
+  @apply bg-[#1A1A1A] 
 }
 
 .skills__group {
@@ -187,3 +200,27 @@ tr:hover {
   background: #e3f2fd;
 }
 
+.comment-container {
+  @apply pl-8 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-1px_rgba(0,0,0,0.06)] bg-[#e3e1e1];
+}
+
+.dark .comment-container {
+  @apply bg-[#1A1A1A] 
+}
+
+.chatbot__card {
+  @apply flex flex-col items-center gap-6 w-4/5 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-1px_rgba(0,0,0,0.06)] bg-[#ddd] mx-auto my-6 p-8 rounded-2xl;
+}
+.chatbot__input textarea {
+  @apply w-full border p-2.5 rounded-[5px] border-solid border-[#ddd] text-[black];
+}
+.chatbot__card button {
+  @apply h-[50px] w-[100px] block bg-[#007bff] text-[white] cursor-pointer mt-2.5 p-2.5 rounded-[5px] border-[none] disabled:bg-[#ccc] disabled:cursor-not-allowed;
+}
+.chatbot__card div {
+  @apply mt-5;
+}
+
+.dark .chatbot__card {
+  @apply bg-[#1A1A1A] 
+}

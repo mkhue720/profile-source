@@ -177,11 +177,10 @@ const User = () => {
                         onChange={(e) => setEditedUserInfo({ ...editedUserInfo, img: e.target.value })}
                     />
                     <label>Role:</label>
-                    <input className='text-black'
-                        type="text"
-                        value={editedUserInfo.role}
-                        onChange={(e) => setEditedUserInfo({ ...editedUserInfo, role: e.target.value })}
-                    />
+                    <select value={editedUserInfo.role} onChange={(e) => setEditedUserInfo({ ...editedUserInfo, role: e.target.value })} >
+                        <option value="user">user</option>
+                        <option value="admin">admin</option>
+                    </select>
                     <button onClick={handleSaveEdit}>Save</button>
                 </div>
             )}

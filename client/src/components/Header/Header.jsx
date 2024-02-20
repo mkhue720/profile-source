@@ -1,9 +1,11 @@
 import React, { useRef, useEffect, useContext, useState } from 'react';
 import logo from '../../assets/img/logo.png';
 import { Link, NavLink } from 'react-router-dom';
-import { RiHome2Line, RiArticleLine, RiBriefcaseLine, RiPhoneFill } from 'react-icons/ri';
+import { RiHome2Line, RiArticleLine, RiBriefcaseLine, RiPhoneFill, RiRobot2Line } from 'react-icons/ri';
 import { BiMenu } from 'react-icons/bi';
 import { authContext } from '../../context/AuthContext';
+import useGetProfile from '../../pages/hooks/userFetchData.jsx';
+import { BASE_URL } from '../../config.js';
 const navLinks = [
   {
     path: '/home',
@@ -19,6 +21,11 @@ const navLinks = [
     path: '/projects',
     display: 'Projects',
     icon: <RiBriefcaseLine />
+  },
+  {
+    path: '/chatbot',
+    display: 'ChatBot',
+    icon: <RiRobot2Line  />
   },
   {
     path: '/contact',
@@ -86,8 +93,8 @@ const Header = () => {
               </figure>
             </div>
             {isPopupVisible && (
-              <div className="popup absolute top-full right-0 mt-2 py-2 w-48 bg-white rounded-lg shadow-xl z-50">
-                <Link to={'/profile'} className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500 hover:text-white" onClick={() => setIsPopupVisible(false)}>Profile</Link>
+              <div className="popup">
+                <Link to={'/profile/'} className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500 hover:text-white" onClick={() => setIsPopupVisible(false)}>Profile</Link>
                 {role === 'admin' && <Link to={'/admin/dashboard'} className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500 hover:text-white" onClick={() => setIsPopupVisible(false)}>Dashboard</Link>}
                 <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-blue-500 hover:text-white" onClick={handleLogout}>Logout</button>
               </div>
